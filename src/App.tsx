@@ -1,12 +1,32 @@
-import { useState } from "react";
-import "./App.css";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import { Suspense } from "react";
+import { LOGIN_ROUTE, TEST_ROUTE, USER_HOME_ROUTE } from "./context/Route";
+import UserLayout from "./components/UserLayout";
+import Homepage from "./Pages/Homepage";
+import Test from "./Pages/Test";
 
 function App() {
   return (
     <>
-      <main className="w-screen h-screen bg-slate-700 flex justify-center items-center">
-        <p className="text-white">Hello world</p>
-      </main>
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path={USER_HOME_ROUTE}
+            element={
+              <Suspense>
+                <UserLayout>
+                  <Outlet />
+                </UserLayout>
+              </Suspense>
+            }
+          >
+            <Route index element={<Homepage />} />
+            <Route path={TEST_ROUTE} element={<Test />}></Route>
+          </Route>
+          <Route path={LOGIN_ROUTE} element={<div>login</div>}></Route>
+          <Route path="*" element={<div>not Found</div>}></Route>
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
