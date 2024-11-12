@@ -1,4 +1,4 @@
-import Sidebar from "../components/Catagories/Dropdown";
+import Slidebar from "../components/Catagories/Dropdown";
 import RecommededSectionSale from "../components/Catagories/RecommededSectionSale";
 import AllSectionSale from "../components/Catagories/AllSectionSale";
 
@@ -13,9 +13,9 @@ const SalePage = () => {
         <span className="text-gray-400">/ Rental Books</span>
       </header>
 
-      <div className="flex">
+      <div className="flex mx-10">
         
-        <Sidebar /> 
+        <Slidebar setSelectedCategory={undefined} /> 
 
         {/* Main Content */}
         <main className="flex-1 ml-6">

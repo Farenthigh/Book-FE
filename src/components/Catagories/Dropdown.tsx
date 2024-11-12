@@ -1,9 +1,9 @@
-import React, { useState } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { CiSearch } from "react-icons/ci";
+import { useState } from "react";
 import data from "./list.json";
 
-function Sidebar() {
+function Slidebar({ setSelectedCategory }) {
   const [openIndices, setOpenIndices] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -12,7 +12,7 @@ function Sidebar() {
       setOpenIndices(openIndices.filter((i) => i !== index));
     } else {
       setOpenIndices([...openIndices, index]);
-    } 
+    }
   };
 
   const filteredData = data.filter((item) =>
@@ -49,16 +49,17 @@ function Sidebar() {
             )}
           </button>
 
-          
           {openIndices.includes(index) && (
             <div className="border-t border-gray-300 mt-2 pt-2">
-              <div className="py-1 pl-2 font-serif text-sm hover:text-purple-600 cursor-pointer transition-colors duration-200">{item.allSub}</div>
+              <div
+                className="py-1 pl-2 font-serif text-sm hover:text-purple-600 cursor-pointer transition-colors duration-200"
+                onClick={() => setSelectedCategory(item.title)} 
+              >
+                {item.allSub}
+              </div>
               {item.subNav.map((subItem, subIndex) => (
-                <div
-                  key={subIndex}
-                  className="py-1 pl-8 font-serif text-sm hover:text-purple-600 cursor-pointer transition-colors duration-200"
-                >
-                  {subItem.title}
+                <div key={subIndex} className="py-1 pl-8 font-serif text-sm text-gray-700">
+                  {subItem.title} 
                 </div>
               ))}
             </div>
@@ -69,4 +70,4 @@ function Sidebar() {
   );
 }
 
-export default Sidebar;
+export default Slidebar;
