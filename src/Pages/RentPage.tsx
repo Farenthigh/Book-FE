@@ -1,5 +1,5 @@
-import Sidebar from "../components/Catagories/Dropdown";
-import RecommededSectionRent from "../../../RecommededSectionRent";
+import Slidebar from "../components/Catagories/Dropdown";
+import RecommededSectionRent from "../components/Catagories/RecommededSectionRent";
 import AllSectionRent from "../components/Catagories/AllSectionRent";
 
 
@@ -13,9 +13,9 @@ const RentPage = () => {
         <span className="text-black">/ Rental Books</span>
       </header>
 
-      <div className="flex">
+      <div className="flex mx-10">
         
-        <Sidebar /> 
+        <Slidebar setSelectedCategory={undefined} /> 
 
         {/* Main Content */}
         <main className="flex-1 ml-6">
