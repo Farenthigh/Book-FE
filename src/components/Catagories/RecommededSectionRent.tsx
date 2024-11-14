@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
-import { TfiHeart } from "react-icons/tfi";
+import { FaHeart } from "react-icons/fa";
 
 
 function RecommededSectionRent() {
@@ -63,7 +63,7 @@ function RecommededSectionRent() {
             </div>
             
             <div className="absolute top-2 right-2 flex items-center justify-center bg-gray-300 rounded-full w-8 h-8">
-            <TfiHeart size={20} color="gray" />
+            <FaHeart size={20} color="gray" />
             </div>
             <button className="mt-2 px-5 py-2 bg-primary font-cherry text-white rounded-full hover:bg-purple-600 transition">
               Show details
