@@ -5,7 +5,7 @@ const FavoritePage = () => {
 
 
   return (
-    <div className=" bg-[#f9f9ff] text-gray-800">
+    <div className=" bg-[#f9f9ff] text-gray-800 px-24 py-8">
      <h3 className=" text-4xl font-cherry text-center ">My Favorite</h3>
 
       <div className="flex mx-10 mt-10 ">

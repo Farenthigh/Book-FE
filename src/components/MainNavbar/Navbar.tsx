@@ -22,7 +22,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="p-10">
+      <nav className="px-24 py-8">
         <div className="mx-auto flex justify-between items-center">
           {/* Logo Section */}
           <div className="flex items-center gap-5 font-serif">

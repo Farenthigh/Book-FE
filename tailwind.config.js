@@ -6,6 +6,11 @@ export default {
       colors: {
         primarycontainer: "#ECE6F0",
         primary: "#65558F",
+        lightPrimary: "#B89DFF",
+        OrangePrimary: "#FF971D",
+        available: "#168F04",
+        rented: "#900205",
+
       },
       fontFamily: {
         cherry: ["Cherry Cream Soda"],
