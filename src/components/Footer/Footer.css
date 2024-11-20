@@ -1,0 +1,36 @@
+.footer-container {
+    border: 1px solid;
+    box-shadow: 8px 8px;
+}
+
+.footer-section-contact {
+    margin-right: 200px;
+    width: 400px;
+}
+
+.footer-section-contact p {
+    padding-bottom: 10px;
+}
+
+.footer-section-about {
+    margin-right: 50px;
+    width: 150px;
+}
+
+.footer-icon {
+    width: 20px;
+    height: auto;
+    cursor: pointer;
+}
+
+.footer-socialIcon img {
+    width: 30px;
+    height: auto;
+    cursor: pointer;
+    margin-top: 40px;
+    padding-right: 15px;
+}
+
+.footer-text {
+    padding-left: 20px;
+}

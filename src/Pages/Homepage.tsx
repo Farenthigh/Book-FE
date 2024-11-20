@@ -1,6 +1,8 @@
 import { useState } from "react";
 import arrowleft from "../assets/arrowleft.png";
 import arrowright from "../assets/arrowright.png";
+import Footer from "../components/Footer/Footer";
+
 
 const Homepage = () => {
   const [slide, setSlide] = useState<number>(0);
@@ -166,6 +168,7 @@ const Homepage = () => {
           </a>
         </div>
       </div>
+      <Footer />
     </>
   );
 };
