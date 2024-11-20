@@ -1,8 +1,6 @@
-import SaleRentButtom from "../components/Catagories/SaleRentButton";
-import banner4 from "../assets/banner4.png";
-// import { useState } from "react";
-// import arrowleft from "../assets/arrowleft.png";
-// import arrowright from "../assets/arrowright.png";
+import { useState } from "react";
+import arrowleft from "../assets/arrowleft.png";
+import arrowright from "../assets/arrowright.png";
 import Footer from "../components/Footer/Footer";
 
 const Homepage = () => {
@@ -28,7 +26,6 @@ const Homepage = () => {
           </div>
         </div>
       </div>
-
       <Footer />
     </>
   );
