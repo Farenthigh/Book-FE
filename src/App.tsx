@@ -1,5 +1,13 @@
 import { Suspense, useCallback, useEffect, useState } from "react";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import { Suspense } from "react";
+import {
+  CART_ROUTE,
+  LOGIN_ROUTE,
+  SALE_ROUTE,
+  TEST_ROUTE,
+  USER_HOME_ROUTE,
+} from "./context/Route";
 import UserLayout from "./components/UserLayout";
 import { AuthContext, InitAuthValue, IUserData } from "./context/Auth";
 import {
@@ -27,22 +35,7 @@ import { axiosInstance } from "./helper/axiosInstance";
 import Homepage from "./Pages/Homepage";
 import Login from "./Pages/Login";
 import SalePage from "./Pages/SalePage";
-// import CartPage from "./Pages/CartPage";
-import RentPage from "./Pages/RentPage";
-// import AllsaleCatagories from "./Pages/AllsaleCatagories";
-import DetailRentPage from "./Pages/DetailRentPage";
-import DetailSalePage from "./Pages/DetailSalePage";
-import FavoritePage from "./Pages/FavoritePage";
-// import ResponsiveMenu from "./components/MainNavbar/ResponsiveMenu";
-import AuthorPage from "./components/MainNavbar/Authores";
-import Books from "./components/MainNavbar/Books";
-import Contacts from "./components/MainNavbar/Contacts";
-import Publishers from "./components/MainNavbar/Publishers";
-import AddPost from "./Pages/AddPost";
-import EditPost from "./Pages/EditPost";
-import Profile from "./Pages/Profile";
-import Signup from "./Pages/Signup";
-import Test from "./Pages/Test";
+import CartPage from "./Pages/CartPage";
 
 function App() {
   const [auth, setAuth] = useState<IUserData>(InitAuthValue);
@@ -105,6 +98,27 @@ function App() {
           </Routes>
         </BrowserRouter>
       </AuthContext.Provider>
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path={USER_HOME_ROUTE}
+            element={
+              <Suspense>
+                <UserLayout>
+                  <Outlet />
+                </UserLayout>
+              </Suspense>
+            }
+          >
+            <Route index element={<Homepage />} />
+            <Route path={TEST_ROUTE} element={<Test />}></Route>
+            <Route path={SALE_ROUTE} element={<SalePage />} />
+            <Route path={CART_ROUTE} element={<CartPage />} />
+          </Route>
+          <Route path={LOGIN_ROUTE} element={<Login></Login>}></Route>
+          <Route path="*" element={<div>not Found</div>}></Route>
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
