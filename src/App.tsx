@@ -5,28 +5,6 @@ import {
   CART_ROUTE,
   LOGIN_ROUTE,
   SALE_ROUTE,
-  TEST_ROUTE,
-  USER_HOME_ROUTE,
-} from "./context/Route";
-import UserLayout from "./components/UserLayout";
-import { AuthContext, InitAuthValue, IUserData } from "./context/Auth";
-import {
-  ADDPOST_ROUTE,
-  AUTHORS_ROUTE,
-  BOOK_ROUTE,
-  CONTACTS_ROUTE,
-  EDITPOST_ROUTE,
-  // ALLCAT_ROUTE,
-  // CART_ROUTE,
-  // DETAIL_ROUTE,
-  FAV_ROUTE,
-  LOGIN_ROUTE,
-  PROFILE_ROUTE,
-  PUBLICHER_ROUTE,
-  R_DETAIL_ROUTE,
-  RENT_ROUTE,
-  S_DETAIL_ROUTE,
-  SALE_ROUTE,
   SIGNUP_ROUTE,
   TEST_ROUTE,
   USER_HOME_ROUTE,
