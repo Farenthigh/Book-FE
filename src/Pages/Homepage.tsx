@@ -1,12 +1,13 @@
 import SaleRentButtom from "../components/Catagories/SaleRentButton";
 import banner4 from "../assets/banner4.png";
-
+// import { useState } from "react";
+// import arrowleft from "../assets/arrowleft.png";
+// import arrowright from "../assets/arrowright.png";
+import Footer from "../components/Footer/Footer";
 
 const Homepage = () => {
-  
   return (
     <>
-
       <div className="p-5 font-serif flex justify-center gap-10">
         <div>BOOK</div>
         <div>AUTHOR</div>
@@ -23,11 +24,12 @@ const Homepage = () => {
             />
           </div>
           <div className="mt-10">
-            <SaleRentButtom /> 
+            <SaleRentButtom />
           </div>
         </div>
       </div>
 
+      <Footer />
     </>
   );
 };
