@@ -1,16 +1,15 @@
 import Slidebar from "../components/Catagories/Dropdown";
 import AllSaleCategory from "../components/Catagories/AllSaleCategory";
-import { IoIosArrowBack } from "react-icons/io";
 import { useState } from "react";
 
 const AllsaleCatagories = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
 
   return (
-    <div className="font-serif bg-[#f9f9ff] text-gray-800">
-      <header className="flex items-center text-xl ml-10 font-cherry mb-10 text-left">
-        <IoIosArrowBack />
-        <span className="text-black">Sale Books</span>
+    <div className="bg-[#f9f9ff] text-gray-800 px-24 py-8">
+      <header className="text-xl ml-10 font-cherry mb-10 text-left">
+        <span className="text-black">Sale Books</span>{" "}
+        <span className="text-gray-400">/ Rental Books</span>
       </header>
 
       <div className="flex mx-10 mt-5">

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import logo from "../../assets/Component 12.png"; 
 import { MdMenu } from "react-icons/md";
 import { NavbarMenu } from "../Mockdata/data";
-import { CiHeart } from "react-icons/ci";
+import { FaRegHeart } from "react-icons/fa";
 import { FiShoppingCart } from "react-icons/fi";
 import React, { useRef, useState } from "react";
 import ResponsiveMenu from "./ResponsiveMenu";
@@ -22,7 +22,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="p-10">
+      <nav className="px-24 py-8">
         <div className="mx-auto flex justify-between items-center">
           {/* Logo Section */}
           <div className="flex items-center gap-5 font-serif">
@@ -44,7 +44,7 @@ const Navbar = () => {
           {/* Icon Section */}
           <div className="flex items-center gap-4">
             <button className="text-2xl">
-              <CiHeart />
+              <FaRegHeart  />
             </button>
             <button className="text-2xl">
               <FiShoppingCart />
