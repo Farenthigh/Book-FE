@@ -11,6 +11,7 @@ export default {
         available: "#168F04",
         rented: "#900205",
 
+        sub: "#C2AFF4",
       },
       fontFamily: {
         cherry: ["Cherry Cream Soda"],
