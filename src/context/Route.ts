@@ -8,4 +8,4 @@ export const S_DETAIL_ROUTE = "/Sdetail";
 export const R_DETAIL_ROUTE = "/Rdetail";
 export const FAV_ROUTE = "/fav";
 
-
+export const SIGNUP_ROUTE = "/signup";
