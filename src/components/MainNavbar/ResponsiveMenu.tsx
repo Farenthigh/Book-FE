@@ -17,7 +17,8 @@ const ResponsiveMenu = ({ open }) => {
                         <ul className='flex flex-col justify-center items-center gap-10'>
                             <li>HOME</li>
                             <li>BOOK</li>
-                            <li>AUTHORS</li>
+                            <li>AUTHOR</li>
+                            <li>PUBLISHER</li>
                             <li>CONTACTS</li>
                         </ul>
                     </div>

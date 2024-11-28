@@ -54,7 +54,7 @@ function RecommededSectionSale() {
             <div className="absolute top-2 right-2 flex items-center justify-center bg-gray-300 rounded-full w-8 h-8">
               <Heart />
             </div>
-            <button className="mt-2 px-4 py-1 bg-primary font-cherry text-white rounded-full hover:bg-purple-600 transition">
+            <button className="mt-2 mb-2 px-4 py-1 bg-primary font-cherry text-white rounded-full hover:bg-purple-600 transition">
               Show details
             </button>
           </div>

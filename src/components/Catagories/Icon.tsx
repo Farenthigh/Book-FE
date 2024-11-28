@@ -1,7 +1,7 @@
 import Rent from "../../assets/Rent.png";
 import Buy from "../../assets/Buy.png";
 import Return from "../../assets/Return.png";
-import Detail from "../../assets/Detail.png";
+import PaymentMet from "../../assets/PaymentMet.png";
 
 const Icon = () => {
   const topIcons = [
@@ -18,8 +18,8 @@ const Icon = () => {
       label: "HOW TO RETURN",
     },
     {
-      src: Detail,
-      label: "ORDER DETAIL",
+      src: PaymentMet,
+      label: "PAYMENT METHOD",
     },
   ];
 

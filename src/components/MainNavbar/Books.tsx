@@ -1,12 +1,27 @@
+import SlideBook from "./SlideBook"
+import { useState } from "react";
+import AllBooks from "./AllBooks";
 
-function Books() {
+const Books = () => {
+  const [selectedBooks, setSelectedBooks] = useState([]);
   return (
-    <div>
-      <h2>Book Page</h2>
-      <hr />
-      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi officia laborum eius esse alias unde minus ipsam ut in cupiditate sint hic deserunt blanditiis corrupti at, repellendus nobis recusandae laboriosam!</p>
-    </div>
-  )
-}
+    <div className="bg-[#f9f9ff] text-gray-800 px-24 py-8">
+      <header className="text-3xl font-bold ml-10 font-cherry mb-10 text-left ">
+        <span className="text-primary">BOOKS</span>
+      </header>
 
-export default Books
+      <div className="flex mx-10 mt-5">
+         <SlideBook setSelectedBooks={setSelectedBooks} />
+
+        <main className="flex-1 ml-6">
+          <AllBooks selectedBooks={selectedBooks} />
+
+        </main>
+      </div>
+    </div>
+    
+  );
+};
+
+export default Books;
+

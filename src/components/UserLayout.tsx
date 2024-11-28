@@ -1,4 +1,5 @@
-import Navbar from "./User/Navbar";
+// import Navbar from "./User/Navbar";
+import Navbar from "./MainNavbar/Navbar";
 
 
 type Props = {
@@ -9,7 +10,7 @@ const UserLayout: React.FC<Props> = (props) => {
   return (
     <>
       <main className="w-full">
-        <Navbar></Navbar>
+        <Navbar/>
         <div>{props.children}</div>
       </main>
     </>

@@ -2,7 +2,7 @@ import Slidebar from "../components/Catagories/Dropdown";
 import AllSaleCategory from "../components/Catagories/AllSaleCategory";
 import { useState } from "react";
 
-const AllsaleCatagories = () => {
+const AllsalePage = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
 
   return (
@@ -24,4 +24,4 @@ const AllsaleCatagories = () => {
   );
 };
 
-export default AllsaleCatagories;
+export default AllsalePage;

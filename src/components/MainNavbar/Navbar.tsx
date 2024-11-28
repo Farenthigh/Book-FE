@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"; // Import Link from react-router-dom
+import { Link } from "react-router-dom"; 
 import logo from "../../assets/Component 12.png"; 
 import { MdMenu } from "react-icons/md";
 import { NavbarMenu } from "../Mockdata/data";
@@ -10,15 +10,23 @@ import ResponsiveMenu from "./ResponsiveMenu";
 const Navbar = () => {
   const [opens, setOpens] = useState(false);
   const [open, setOpen] = React.useState(false);
-  const Menus = ['Profile', 'Setting', 'Logout'];
+  const Menus = ['Profile', 'Orders', 'Logout'];
   const menuRef = useRef();
   const buttRef = useRef();
   
-  window.addEventListener('click', (e) => {
-    if (e.target !== menuRef.current && e.target !== buttRef.current) {
-      setOpens(false);
-    }
-  });
+  React.useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (menuRef.current && buttRef.current) {
+        if (!menuRef.current.contains(e.target) && !buttRef.current.contains(e.target)) {
+          setOpens(false);
+        }
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <>
@@ -60,7 +68,7 @@ const Navbar = () => {
               {opens && (
                 <div
                   ref={menuRef}
-                  className="bg-primarycontainer border border-primary p-4 w-32 shadow-lg absolute top-full mt-2 rounded-lg"
+                  className="bg-primarycontainer border border-primary p-4 w-32 shadow-lg absolute top-full mt-2 rounded-lg z-50"
                   style={{ left: '50%', transform: 'translateX(-50%)' }}
                 >
                   <div

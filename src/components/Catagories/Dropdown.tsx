@@ -1,29 +1,40 @@
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { CiSearch } from "react-icons/ci";
 import { useState } from "react";
-import data from "./list.json";
+import data from "./Book.json"; // Import the JSON file here
 
 function Slidebar({ setSelectedCategory }) {
-  const [openIndices, setOpenIndices] = useState([]);
+  const [openCategories, setOpenCategories] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
-  const handleToggle = (index) => {
-    if (openIndices.includes(index)) {
-      setOpenIndices(openIndices.filter((i) => i !== index));
-    } else {
-      setOpenIndices([...openIndices, index]);
+  // Group data by category
+  const groupedData = data.reduce((acc, item) => {
+    if (!acc[item.category]) {
+      acc[item.category] = [];
     }
-  };
+    acc[item.category].push(item);
+    return acc;
+  }, {});
 
-  const filteredData = data.filter((item) =>
-    item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    item.subNav.some((subItem) =>
-      subItem.title.toLowerCase().includes(searchTerm.toLowerCase())
+  // Filter categories and items based on the search term
+  const filteredCategories = Object.keys(groupedData).filter((category) =>
+    category.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    groupedData[category].some((item) =>
+      item.title.toLowerCase().includes(searchTerm.toLowerCase())
     )
   );
 
+  const handleToggle = (category) => {
+    if (openCategories.includes(category)) {
+      setOpenCategories(openCategories.filter((c) => c !== category));
+    } else {
+      setOpenCategories([...openCategories, category]);
+    }
+  };
+
   return (
     <div className="w-64 p-4 bg-white rounded-lg shadow-md">
+      {/* Search Input */}
       <div className="mb-6 relative">
         <CiSearch className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-500" />
         <input
@@ -35,31 +46,40 @@ function Slidebar({ setSelectedCategory }) {
         />
       </div>
 
-      {filteredData.map((item, index) => (
-        <div key={index} className="mb-4">
+      {/* Data Mapping */}
+      {filteredCategories.map((category) => (
+        <div key={category} className="mb-4">
+          {/* Category Title */}
           <button
-            onClick={() => handleToggle(index)}
+            onClick={() => handleToggle(category)}
             className="flex items-center justify-between w-full text-xl font-cherry text-gray-900"
           >
-            {item.title}
-            {openIndices.includes(index) ? (
+            {category}
+            {openCategories.includes(category) ? (
               <IoIosArrowUp className="h-5 w-5 text-gray-700" />
             ) : (
               <IoIosArrowDown className="h-5 w-5 text-gray-700" />
             )}
           </button>
 
-          {openIndices.includes(index) && (
+          {/* Subcategories and Items */}
+          {openCategories.includes(category) && (
             <div className="border-t border-gray-300 mt-2 pt-2">
+              {/* Display the "All" link for a category */}
               <div
                 className="py-1 pl-2 font-serif text-sm hover:text-purple-600 cursor-pointer transition-colors duration-200"
-                onClick={() => setSelectedCategory(item.title)} 
+                onClick={() => setSelectedCategory(category)}
               >
-                {item.allSub}
+                All {category}
               </div>
-              {item.subNav.map((subItem, subIndex) => (
-                <div key={subIndex} className="py-1 pl-8 font-serif text-sm text-gray-700">
-                  {subItem.title} 
+
+              {/* Map through books in the category */}
+              {groupedData[category].map((item) => (
+                <div
+                  key={item.id}
+                  className="py-1 pl-8 font-serif text-sm text-gray-700 hover:text-purple-600"
+                >
+                  {item.title}
                 </div>
               ))}
             </div>
@@ -71,3 +91,4 @@ function Slidebar({ setSelectedCategory }) {
 }
 
 export default Slidebar;
+
