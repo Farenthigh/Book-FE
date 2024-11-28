@@ -15,7 +15,7 @@ const Navbar = () => {
         <div className="relative">
           <input
             type="text"
-            placeholder="Search by Books, Author"
+            placeholder="Search by Book, Author, Publisher"
             className="w-full pl-10 pr-3 p-3 rounded-full bg-purple-100 text-gray-700 placeholder-gray-500 focus:outline-none"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}

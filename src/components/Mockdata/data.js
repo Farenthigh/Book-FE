@@ -11,11 +11,16 @@ export const NavbarMenu = [
     },
     {
         id: 3,
-        title: "AUTHORS",
+        title: "AUTHOR",
         link: "/authors",  
     },
     {
         id: 4,
+        title: "PUBLISHER",
+        link: "/Publishers",  
+    },
+    {
+        id: 5,
         title: "CONTACTS",
         link: "/contacts",  
     },

@@ -1,12 +1,26 @@
+import { useState } from "react";
+import SlideAuthor from "./SlideAuthor";
+import AuthorBooks from "./AuthorBook";
 
-function Authors() {
+function AuthorPage() {
+  const [selectedAuthors, setSelectedAuthors] = useState([]);
+
   return (
-    <div>
-      <h2 >Authore Page</h2>
-      <hr />
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis fugiat nobis ea quis atque iusto odio beatae eveniet nesciunt, culpa, incidunt, nisi quia nostrum fuga. Quam, voluptatibus! Voluptates, necessitatibus magni!</p>
+    
+    <div className="bg-[#f9f9ff] text-gray-800 px-24 py-8">
+      <header className="text-3xl font-bold ml-10 font-cherry mb-10 text-left ">
+        <span className="text-primary">AUTHOR</span>
+      </header>
+      
+      <div className="flex mx-10 mt-5">
+        <SlideAuthor  setSelectedAuthor={setSelectedAuthors} />
+      
+        <main className="flex-1 ml-6">
+          <AuthorBooks selectedAuthors={selectedAuthors} />
+        </main>
+      </div>
     </div>
-  )
+  );
 }
 
-export default Authors
+export default AuthorPage;

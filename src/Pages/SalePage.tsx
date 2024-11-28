@@ -1,7 +1,7 @@
 import Slidebar from "../components/Catagories/Dropdown";
 import RecommededSectionSale from "../components/Catagories/RecommededSectionSale";
 import AllSectionSale from "../components/Catagories/AllSectionSale";
-import Salebanner from "../components/Catagories/Salebanner";
+import Salebanner from "../components/Banner/Salebanner";
 
 
 const SalePage = () => {

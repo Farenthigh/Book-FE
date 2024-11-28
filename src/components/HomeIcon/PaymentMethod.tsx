@@ -5,8 +5,8 @@ import DetailRent2 from "../../assets/DetailRent2.png";
 import Checkout from "../../assets/Checkout.png";
 import Payment from "../../assets/Payment.png";
 
-const HowtoRent = () => {
-  const topHowtoRents = [
+const PaymentMethod = () => {
+  const topPaymentMethod = [
     {
       src: Rentbutton,
       label: "HOW TO BUY"
@@ -35,9 +35,9 @@ const HowtoRent = () => {
 
   return (
     <div className="p-5 font-serif font-xl font-bold bg-[#f9f9ff] text-center text-gray-800 px-24 py-8">
-      <h1 className="mb-10">HOW TO RENT</h1>
+      <h1 className="mb-10">PAYMENT METHOD</h1>
       <div className="flex justify-around gap-10">
-        {topHowtoRents.map((icon, index) => (
+        {topPaymentMethod.map((icon, index) => (
           <div key={index} className="text-center text-sm">
             <div className="w-60 h-60 mx-auto rounded-full bg-primarycontainer border shadow-md flex items-center justify-center ">
               <img
@@ -54,4 +54,4 @@ const HowtoRent = () => {
   );
 };
 
-export default HowtoRent;
+export default PaymentMethod;
