@@ -3,8 +3,11 @@ import { axiosInstance } from "../helper/axiosInstance";
 import { IUserAuth } from "../interfaces/userAuth";
 import logopurple from "../assets/logopurple.png";
 import close from "../assets/close.png";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { SIGNUP_ROUTE, USER_HOME_ROUTE } from "../context/Route";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [userAuth, setUserAuth] = useState<IUserAuth>({
     email: "",
     password: "",
@@ -22,6 +25,9 @@ const Login = () => {
         password: userAuth.password,
       });
       console.log(response);
+      if (response.status === 200) {
+        navigate(USER_HOME_ROUTE);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -68,7 +74,9 @@ const Login = () => {
           {/* <input type="button" value={`logout`} onClick={handleLogout}></input> */}
           <div className="flex gap-1">
             <div className="flex justify-end">Don't have an account?</div>
-            <div className="flex justify-start text-sub gap-5">Register</div>
+            <Link to={SIGNUP_ROUTE}>
+              <div className="flex justify-start text-sub gap-5">Register</div>
+            </Link>
           </div>
         </div>
       </div>
