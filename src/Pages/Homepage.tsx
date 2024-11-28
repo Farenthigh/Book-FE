@@ -1,5 +1,9 @@
+
 import SaleRentButtom from "../components/Catagories/SaleRentButton";
 import banner4 from "../assets/banner4.png";
+import Footer from "../components/Footer/Footer";
+import Icon from "../components/Catagories/Icon";
+
 
 
 const Homepage = () => {
@@ -27,6 +31,7 @@ const Homepage = () => {
           </div>
         </div>
       </div>
+      <Footer />
 
     </>
   );
