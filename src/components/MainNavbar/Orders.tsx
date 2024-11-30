@@ -69,54 +69,57 @@ function Slidebar({ setSelectedCategory }) {
         />
       </div>
       <div>
-      {/* Grouped Checkbox List */}
-      {Object.entries(filteredGroupedData).map(([category, books], index) => (
-        <div key={index} className="mb-6">
-          {/* Category Title */}
-          <div className="text-lg font-bold text-gray-900 mb-2">{category}</div>
+        {/* Grouped Checkbox List */}
+        {Object.entries(filteredGroupedData).map(([category, books], index) => (
+          <div key={index} className="mb-6">
+            {/* Category Title */}
+            <div className="text-lg font-bold text-gray-900 mb-2">
+              {category}
+            </div>
 
-          {/* All Checkbox for Category */}
-          <div className="flex items-center mb-2">
-            <input
-              type="checkbox"
-              id={`all-${category}`}
-              className="mr-2"
-              checked={books
-                .map((book) => book.title)
-                .every((title) => selectedItems.includes(title))}
-              onChange={() => handleAllCategoryCheckboxChange(category, books)}
-            />
-            <label
-              htmlFor={`all-${category}`}
-              className="text-sm text-gray-800 cursor-pointer"
-            >
-              All {category}
-            </label>
-          </div>
-
-          {/* Books in Category */}
-          {books.map((book, bookIndex) => (
-            <div key={bookIndex} className="flex items-center mb-2">
+            {/* All Checkbox for Category */}
+            <div className="flex items-center mb-2">
               <input
                 type="checkbox"
-                id={`book-${index}-${bookIndex}`}
+                id={`all-${category}`}
                 className="mr-2"
-                checked={selectedItems.includes(book.title)}
-                onChange={() => handleItemCheckboxChange(book.title)}
+                checked={books
+                  .map((book) => book.title)
+                  .every((title) => selectedItems.includes(title))}
+                onChange={() =>
+                  handleAllCategoryCheckboxChange(category, books)
+                }
               />
               <label
-                htmlFor={`book-${index}-${bookIndex}`}
-                className="text-sm text-gray-700 cursor-pointer"
+                htmlFor={`all-${category}`}
+                className="text-sm text-gray-800 cursor-pointer"
               >
-                {book.title}
+                All {category}
               </label>
             </div>
-          ))}
-        </div>
-      ))}
 
+            {/* Books in Category */}
+            {books.map((book, bookIndex) => (
+              <div key={bookIndex} className="flex items-center mb-2">
+                <input
+                  type="checkbox"
+                  id={`book-${index}-${bookIndex}`}
+                  className="mr-2"
+                  checked={selectedItems.includes(book.title)}
+                  onChange={() => handleItemCheckboxChange(book.title)}
+                />
+                <label
+                  htmlFor={`book-${index}-${bookIndex}`}
+                  className="text-sm text-gray-700 cursor-pointer"
+                >
+                  {book.title}
+                </label>
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
     </div>
-    
   );
 }
 
