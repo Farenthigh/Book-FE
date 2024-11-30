@@ -43,6 +43,9 @@ import EditPost from "./Pages/EditPost";
 import Profile from "./Pages/Profile";
 import Signup from "./Pages/Signup";
 import Test from "./Pages/Test";
+import Profile from "./Pages/Profile";
+import AddPost from "./Pages/AddPost";
+import EditPost from "./Pages/EditPost";
 
 function App() {
   const [auth, setAuth] = useState<IUserData>(InitAuthValue);
