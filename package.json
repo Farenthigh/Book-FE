@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "axios": "^1.7.7",
     "book-fe": "file:",
     "boxicons": "^2.1.4",
     "framer-motion": "^11.11.11",

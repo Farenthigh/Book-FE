@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.input-field {
+    @apply w-full px-4 py-2 border rounded focus:ring focus:ring-indigo-300;
+}
