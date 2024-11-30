@@ -7,5 +7,8 @@ export const ALLCAT_ROUTE = "/allCat";
 export const S_DETAIL_ROUTE = "/Sdetail";
 export const R_DETAIL_ROUTE = "/Rdetail";
 export const FAV_ROUTE = "/fav";
+export const PROFILE_ROUTE = "/profile"
+export const ADDPOST_ROUTE = "/addPost"
+export const EDITPOST_ROUTE = "/editPost"
 
 export const SIGNUP_ROUTE = "/signup";

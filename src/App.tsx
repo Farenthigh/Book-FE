@@ -13,6 +13,9 @@ import {
   TEST_ROUTE,
   USER_HOME_ROUTE,
   SIGNUP_ROUTE,
+  PROFILE_ROUTE,
+  ADDPOST_ROUTE,
+  EDITPOST_ROUTE,
 } from "./context/Route";
 import UserLayout from "./components/UserLayout";
 import { AuthContext, InitAuthValue, IUserData } from "./context/Auth";
@@ -29,6 +32,9 @@ import DetailRentPage from "./Pages/DetailRentPage";
 // import ResponsiveMenu from "./components/MainNavbar/ResponsiveMenu";
 import Signup from "./Pages/Signup";
 import Test from "./Pages/Test";
+import Profile from "./Pages/Profile";
+import AddPost from "./Pages/AddPost";
+import EditPost from "./Pages/EditPost";
 
 function App() {
   const [auth, setAuth] = useState<IUserData>(InitAuthValue);
@@ -77,6 +83,9 @@ function App() {
             <Route path={R_DETAIL_ROUTE} element={<DetailRentPage />} />
             <Route path={FAV_ROUTE} element={<FavoritePage />} />
           </Route>
+          <Route path={PROFILE_ROUTE} element={<Profile />} />
+          <Route path={ADDPOST_ROUTE} element={<AddPost />} />
+          <Route path={EDITPOST_ROUTE} element={<EditPost />} />
           <Route path={LOGIN_ROUTE} element={<Login></Login>}></Route>
           <Route path="*" element={<div>not Found</div>}></Route>
         </Routes>
