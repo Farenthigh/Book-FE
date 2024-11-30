@@ -22,6 +22,10 @@ import {
   SIGNUP_ROUTE,
   TEST_ROUTE,
   USER_HOME_ROUTE,
+  SIGNUP_ROUTE,
+  PROFILE_ROUTE,
+  ADDPOST_ROUTE,
+  EDITPOST_ROUTE,
 } from "./context/Route";
 import { axiosInstance } from "./helper/axiosInstance";
 import Homepage from "./Pages/Homepage";
