@@ -8,12 +8,27 @@ import {
   SIGNUP_ROUTE,
   TEST_ROUTE,
   USER_HOME_ROUTE,
+  SIGNUP_ROUTE,
+  PROFILE_ROUTE,
+  ADDPOST_ROUTE,
+  EDITPOST_ROUTE,
 } from "./context/Route";
 import { axiosInstance } from "./helper/axiosInstance";
 import Homepage from "./Pages/Homepage";
 import Login from "./Pages/Login";
 import SalePage from "./Pages/SalePage";
-import CartPage from "./Pages/CartPage";
+// import CartPage from "./Pages/CartPage";
+import RentPage from "./Pages/RentPage";
+// import AllsaleCatagories from "./Pages/AllsaleCatagories";
+import DetailSalePage from "./Pages/DetailSalePage";
+import FavoritePage from "./Pages/FavoritePage";
+import DetailRentPage from "./Pages/DetailRentPage";
+// import ResponsiveMenu from "./components/MainNavbar/ResponsiveMenu";
+import Signup from "./Pages/Signup";
+import Test from "./Pages/Test";
+import Profile from "./Pages/Profile";
+import AddPost from "./Pages/AddPost";
+import EditPost from "./Pages/EditPost";
 
 function App() {
   const [auth, setAuth] = useState<IUserData>(InitAuthValue);
@@ -93,6 +108,9 @@ function App() {
             <Route path={SALE_ROUTE} element={<SalePage />} />
             <Route path={CART_ROUTE} element={<CartPage />} />
           </Route>
+          <Route path={PROFILE_ROUTE} element={<Profile />} />
+          <Route path={ADDPOST_ROUTE} element={<AddPost />} />
+          <Route path={EDITPOST_ROUTE} element={<EditPost />} />
           <Route path={LOGIN_ROUTE} element={<Login></Login>}></Route>
           <Route path="*" element={<div>not Found</div>}></Route>
         </Routes>
