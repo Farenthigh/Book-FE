@@ -59,8 +59,8 @@ const UserProfile = () => {
                                     onChange={(e) => handleInputChange(e, "userInfo")}
                                     disabled={!isEditing}
                                     className={`w-full px-4 py-2 border rounded ${isEditing
-                                            ? "focus:outline-none focus:ring focus:ring-indigo-300"
-                                            : "bg-gray-200"
+                                        ? "focus:outline-none focus:ring focus:ring-indigo-300"
+                                        : "bg-gray-200"
                                         }`}
                                 />
                             </div>
@@ -85,8 +85,8 @@ const UserProfile = () => {
                                     onChange={(e) => handleInputChange(e, "addressInfo")}
                                     disabled={!isEditing}
                                     className={`w-full px-4 py-2 border rounded ${isEditing
-                                            ? "focus:outline-none focus:ring focus:ring-indigo-300"
-                                            : "bg-gray-200"
+                                        ? "focus:outline-none focus:ring focus:ring-indigo-300"
+                                        : "bg-gray-200"
                                         }`}
                                 />
                             </div>
@@ -99,8 +99,8 @@ const UserProfile = () => {
                     <button
                         onClick={toggleEdit}
                         className={`px-6 py-3 font-semibold text-lg rounded ${isEditing
-                                ? "bg-green-500 text-white hover:bg-green-600"
-                                : "bg-indigo-500 text-white hover:bg-indigo-600"
+                            ? "bg-green-500 text-white hover:bg-green-600"
+                            : "bg-indigo-500 text-white hover:bg-indigo-600"
                             }`}
                     >
                         {isEditing ? "Save" : "Edit"}
