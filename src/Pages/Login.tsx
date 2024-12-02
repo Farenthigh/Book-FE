@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import close from "../assets/close.png";
+import logopurple from "../assets/logopurple.png";
+import { SIGNUP_ROUTE, USER_HOME_ROUTE } from "../context/Route";
 import { axiosInstance } from "../helper/axiosInstance";
 import { IUserAuth } from "../interfaces/userAuth";
-import logopurple from "../assets/logopurple.png";
-import close from "../assets/close.png";
-import { Link, Navigate, useNavigate } from "react-router-dom";
-import { SIGNUP_ROUTE, USER_HOME_ROUTE } from "../context/Route";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -26,23 +26,18 @@ const Login = () => {
       });
       console.log(response);
       if (response.status === 200) {
-        navigate(USER_HOME_ROUTE);
+        // navigate(USER_HOME_ROUTE);
+        window.location.href = USER_HOME_ROUTE;
       }
     } catch (error) {
       console.log(error);
     }
   };
-  const handleLogout = async (e) => {
-    try {
-      const response = await axiosInstance.post("/user/logout");
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+
   useEffect(() => {
     console.log(userAuth);
   }, [userAuth]);
+  
   return (
     <form onChange={handleOnChange} onSubmit={handleSubmit} className="bg-[#f9f9ff] px-32 py-2 ">
       <div className="bg-white shadow-lg rounded-lg">
