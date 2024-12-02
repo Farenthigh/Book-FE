@@ -1,6 +1,6 @@
 import { CiSearch } from "react-icons/ci";
 import { useState } from "react";
-import data from "../Catagories/Book.json";
+import data from "../Mockdata/Book.json";
 
 function Slidebar({ setSelectedCategory }) {
   const [searchTerm, setSearchTerm] = useState("");

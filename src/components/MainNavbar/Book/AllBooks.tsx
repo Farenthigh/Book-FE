@@ -1,8 +1,9 @@
 import { useState } from "react";
-import Heart from "../Catagories/Heart";
+import data from "../../Mockdata/Book.json";
+import Heart from "../../Catagories/Heart";
 
-function PubBooks({ filteredBooks }) {
-  const [activeTab, setActiveTab] = useState("SALE"); 
+function AllBooks({ selectedBooks }) {
+  const [activeTab, setActiveTab] = useState("SALE");
 
   return (
     <div>
@@ -25,10 +26,10 @@ function PubBooks({ filteredBooks }) {
         </button>
       </div>
       <div className="border-b-2 border-primary w-full my-2"></div>
-
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {filteredBooks.length > 0 ? (
-          filteredBooks.map((book) => (
+        {data
+          .filter((book) => selectedBooks.includes(book.title))
+          .map((book) => (
             <div
               key={book.id}
               className="border rounded-lg p-2 text-center relative w-72 shadow-md"
@@ -49,9 +50,7 @@ function PubBooks({ filteredBooks }) {
                   {book.status}
                 </p>
               ) : (
-                <p className="p-4 text-left text-lg text-gray-700 font-bold">
-                  {book.price} THB
-                </p>
+                <p className="p-4 text-left text-lg text-gray-700 font-bold">{book.price} THB</p>
               )}
               <div className="absolute top-2 right-2 flex items-center justify-center bg-gray-300 rounded-full w-8 h-8">
                 <Heart />
@@ -60,10 +59,10 @@ function PubBooks({ filteredBooks }) {
                 Show details
               </button>
             </div>
-          ))
-        ) : (
+          ))}
+        {selectedBooks.length === 0 && (
           <p className="col-span-full text-center text-gray-500">
-            No books found for the selected publisher.
+            No books selected.
           </p>
         )}
       </div>
@@ -71,4 +70,4 @@ function PubBooks({ filteredBooks }) {
   );
 }
 
-export default PubBooks;
+export default AllBooks;

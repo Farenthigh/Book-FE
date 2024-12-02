@@ -1,6 +1,6 @@
 import Slidebar from "../components/Catagories/Dropdown";
-import RecommededSectionSale from "../components/Catagories/RecommededSectionSale";
-import AllSectionSale from "../components/Catagories/AllSectionSale";
+import RecommededSectionSale from "../components/SalePage/RecommededSectionSale";
+import AllSectionSale from "../components/SalePage/AllSectionSale";
 import Salebanner from "../components/Banner/Salebanner";
 
 

@@ -1,5 +1,5 @@
 import Heart from "./Heart";
-import Book from "./Book.json";
+import Book from "../Mockdata/Book.json";
 
 function RecHome() {
   

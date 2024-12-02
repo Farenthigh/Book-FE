@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { FaUserEdit } from "react-icons/fa";
+import close from "../assets/close.png";
+import logopurple from "../assets/logopurple.png";
 
 const UserProfile = () => {
     const [userInfo, setUserInfo] = useState({
@@ -38,17 +41,31 @@ const UserProfile = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gray-100 flex justify-center items-center">
-            <div className="w-full max-w-4xl p-8 bg-white shadow-lg rounded-lg">
-                <h1 className="text-3xl font-bold mb-6 text-center">User Profile</h1>
-
+        <div className="min-h-screen flex justify-center items-center bg-[#f9f9ff] px-32 py-10">
+            <div className="w-full bg-white shadow-lg rounded-lg">
+                <div className="flex justify-end p-5">
+                    <img src={close} alt="close" />
+                </div>
+                <div className="p-10 flex justify-center">
+                    <img src={logopurple} alt="logopurple" />
+                </div>
+                
+                <h1 className="text-4xl font-cherry text-center">User Profile</h1>
+                <div className="p-20">
                 {/* My Account Section */}
                 <div className="mb-8">
-                    <h2 className="text-2xl font-semibold mb-4">My Account</h2>
+                    <div className="flex justify-between">
+                    <h2 className="text-2xl font-serif mb-4">My Account</h2>
+                    <button
+                        onClick={toggleEdit}
+                    >
+                        {isEditing ? " ": <FaUserEdit size={20}/>}
+                    </button>
+                    </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         {Object.keys(userInfo).map((key) => (
                             <div key={key}>
-                                <label className="block text-gray-700 mb-2 capitalize" htmlFor={key}>
+                                <label className="block text-gray-700 capitalize ml-5" htmlFor={key}>
                                     {key.replace(/([A-Z])/g, " $1")}
                                 </label>
                                 <input
@@ -59,8 +76,8 @@ const UserProfile = () => {
                                     onChange={(e) => handleInputChange(e, "userInfo")}
                                     disabled={!isEditing}
                                     className={`w-full px-4 py-2 border rounded ${isEditing
-                                        ? "focus:outline-none focus:ring focus:ring-indigo-300"
-                                        : "bg-gray-200"
+                                        ? "rounded-full p-2 w-full pl-5  border-2 border-primary focus:outline-none"
+                                        : "rounded-full p-2 w-full pl-5 bg-primarycontainer border-2 border-gray-200 focus:outline-none"
                                         }`}
                                 />
                             </div>
@@ -74,7 +91,7 @@ const UserProfile = () => {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         {Object.keys(addressInfo).map((key) => (
                             <div key={key}>
-                                <label className="block text-gray-700 mb-2 capitalize" htmlFor={key}>
+                                <label className="block text-gray-700 capitalize ml-5" htmlFor={key}>
                                     {key.replace(/([A-Z])/g, " $1")}
                                 </label>
                                 <input
@@ -85,8 +102,8 @@ const UserProfile = () => {
                                     onChange={(e) => handleInputChange(e, "addressInfo")}
                                     disabled={!isEditing}
                                     className={`w-full px-4 py-2 border rounded ${isEditing
-                                        ? "focus:outline-none focus:ring focus:ring-indigo-300"
-                                        : "bg-gray-200"
+                                        ? "rounded-full p-2 w-full pl-5  border-2 border-primary focus:outline-none"
+                                        : "rounded-full p-2 w-full pl-5 bg-primarycontainer border-2 border-gray-200 focus:outline-none"
                                         }`}
                                 />
                             </div>
@@ -99,12 +116,13 @@ const UserProfile = () => {
                     <button
                         onClick={toggleEdit}
                         className={`px-6 py-3 font-semibold text-lg rounded ${isEditing
-                            ? "bg-green-500 text-white hover:bg-green-600"
-                            : "bg-indigo-500 text-white hover:bg-indigo-600"
+                            ? "rounded-full text-xl w-36 bg-available text-white hover:bg-green-600"
+                            : ""
                             }`}
                     >
-                        {isEditing ? "Save" : "Edit"}
+                        {isEditing ? "Save" : " "}
                     </button>
+                </div>
                 </div>
             </div>
         </div>

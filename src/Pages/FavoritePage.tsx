@@ -1,5 +1,5 @@
-import SaleFav from "../components/Catagories/SaleFav";
-import RentFav from "../components/Catagories/RentFav";
+import SaleFav from "../components/Favorite/SaleFav";
+import RentFav from "../components/Favorite/RentFav";
 
 const FavoritePage = () => {
 

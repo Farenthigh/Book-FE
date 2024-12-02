@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { AiOutlineClose, AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
-import Book from "./Book.json";
+import Book from "../Mockdata/Book.json";
 import { FaPhone } from "react-icons/fa6";
 import { FaLine } from "react-icons/fa6";
 

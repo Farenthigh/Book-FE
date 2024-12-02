@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
-import Heart from './Heart';
-import Book from "./Book.json";
+import Heart from '../Catagories/Heart';
+import Book from "../Mockdata/Book.json";
 
+function AllSectionRent() {
 
-
-function RecommededSectionRent() {
 
   const [visibleBooks, setVisibleBooks] = useState(3); 
   const [isExpanded, setIsExpanded] = useState(false); 
@@ -23,7 +22,7 @@ function RecommededSectionRent() {
   return (
     <section>
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-3xl font-cherry">Recommended</h2>
+        <h2 className="text-3xl font-cherry">All Book</h2>
         <a
           href="#"
           onClick={(e) => {
@@ -40,6 +39,7 @@ function RecommededSectionRent() {
           )}
         </a>
       </div>
+
       
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
         {Book.slice(0, visibleBooks).map((book, index) => (
@@ -47,14 +47,14 @@ function RecommededSectionRent() {
             key={index}
             className="border rounded-lg p-4 text-center relative w-72 shadow-md"
           >
-            <img src={book.images[0]} alt={book.title} className=" w-full h-48 object-contain rounded-md mb-2" /> 
-            <h3 className="text-sm font-cherry font-bold">{book.title}</h3>
+            <img src={book.images[0]} alt={book.title} className="w-full h-48 object-contain rounded-md mb-2" />
+            <h3 className="text-sm font-cherry">{book.title}</h3>
             <p className="text-sm text-gray-500 mb-2">{book.author}</p>
             <p className={`p-4 text-right text-lg font-bold ${book.status === 'Rented' ? 'text-rented' : 'text-available'}`}>
               {book.status}
             </p>
             <div className="absolute top-2 right-2 flex items-center justify-center bg-gray-300 rounded-full w-8 h-8">
-            <Heart/>
+              < Heart/>
             </div>
             <button className="mt-2 mb-2 px-4 py-1 bg-primary font-cherry text-white rounded-full hover:bg-purple-600 transition">
               Show details
@@ -66,4 +66,4 @@ function RecommededSectionRent() {
   );
 }
 
-export default RecommededSectionRent;
+export default AllSectionRent;

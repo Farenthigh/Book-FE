@@ -1,8 +1,8 @@
 import Slidebar from "../components/Catagories/Dropdown";
-import AllRentCategory from "../components/Catagories/AllRentCategory";
+import AllRentCategory from "../components/RentPage/AllRentCategory";
 import { useState } from "react";
 
-const AllrentCatagories = () => {
+const AllrentPage = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
 
   return (
@@ -24,4 +24,4 @@ const AllrentCatagories = () => {
   );
 };
 
-export default AllrentCatagories;
+export default AllrentPage;

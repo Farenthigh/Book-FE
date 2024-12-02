@@ -1,7 +1,4 @@
-// import Rentbutton from "../../assets/Rentbutton.png";
-// import Rentbook from "../../assets/Rentbooke.png";
-// import DetailRent1 from "../../assets/DetailRent1.png";
-// import DetailRent2 from "../../assets/DetailRent2.png";
+
 import Salebutton from "../../assets/Salebutton.png";
 import DetailSale from "../../assets/DetailSale.png";
 import Salebook from "../../assets/Salebook.png";

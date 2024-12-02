@@ -1,5 +1,5 @@
 import Slidebar from "../components/Catagories/Dropdown";
-import AllSaleCategory from "../components/Catagories/AllSaleCategory";
+import AllSaleCategory from "../components/SalePage/AllSaleCategory";
 import { useState } from "react";
 
 const AllsalePage = () => {

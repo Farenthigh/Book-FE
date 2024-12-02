@@ -1,15 +1,12 @@
 import { useState } from "react";
-import data from "../Catagories/Book.json";
-import Heart from "../Catagories/Heart";
+import Heart from "../../Catagories/Heart";
 
-function AuthorBooks({ selectedAuthors }) {
-  
-  const [activeTab, setActiveTab] = useState("SALE");
+function PubBooks({ filteredBooks }) {
+  const [activeTab, setActiveTab] = useState("SALE"); 
 
   return (
     <div>
-      
-      <div className="flex justify-between items-center px-4 py-2 ">
+      <div className="flex justify-between items-center px-4 py-2">
         <button
           onClick={() => setActiveTab("SALE")}
           className={`text-lg font-cherry ${
@@ -30,9 +27,8 @@ function AuthorBooks({ selectedAuthors }) {
       <div className="border-b-2 border-primary w-full my-2"></div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {data
-          .filter((book) => selectedAuthors.includes(book.author))
-          .map((book) => (
+        {filteredBooks.length > 0 ? (
+          filteredBooks.map((book) => (
             <div
               key={book.id}
               className="border rounded-lg p-2 text-center relative w-72 shadow-md"
@@ -45,24 +41,29 @@ function AuthorBooks({ selectedAuthors }) {
               <h3 className="text-sm font-cherry">{book.title}</h3>
               <p className="text-sm text-gray-500 mb-2">{book.author}</p>
               {activeTab === "RENT" ? (
-                <p className={`p-4 text-right text-lg font-bold ${book.status === 'Rented' ? 'text-rented' : 'text-available'}`}>
-                    {book.status}
+                <p
+                  className={`p-4 text-right text-lg font-bold ${
+                    book.status === "Rented" ? "text-rented" : "text-available"
+                  }`}
+                >
+                  {book.status}
                 </p>
               ) : (
-                <p className="p-4 text-left text-lg text-gray-700 font-bold">{book.price} THB</p>
+                <p className="p-4 text-left text-lg text-gray-700 font-bold">
+                  {book.price} THB
+                </p>
               )}
               <div className="absolute top-2 right-2 flex items-center justify-center bg-gray-300 rounded-full w-8 h-8">
                 <Heart />
               </div>
               <button className="mt-2 mb-2 px-4 py-1 bg-primary font-cherry text-white rounded-full hover:bg-purple-600 transition">
-              Show details
+                Show details
               </button>
             </div>
-            
-          ))}
-        {data.filter((book) => selectedAuthors.includes(book.author)).length === 0 && (
+          ))
+        ) : (
           <p className="col-span-full text-center text-gray-500">
-            No books found for the selected author.
+            No books found for the selected publisher.
           </p>
         )}
       </div>
@@ -70,4 +71,4 @@ function AuthorBooks({ selectedAuthors }) {
   );
 }
 
-export default AuthorBooks;
+export default PubBooks;

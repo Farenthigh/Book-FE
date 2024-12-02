@@ -1,7 +1,7 @@
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { CiSearch } from "react-icons/ci";
 import { useState } from "react";
-import data from "./Book.json"; // Import the JSON file here
+import data from "../Mockdata/Book.json"; // Import the JSON file here
 
 function Slidebar({ setSelectedCategory }) {
   const [openCategories, setOpenCategories] = useState([]);

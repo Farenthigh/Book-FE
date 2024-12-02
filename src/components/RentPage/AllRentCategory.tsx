@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { MdKeyboardDoubleArrowRight, MdKeyboardDoubleArrowLeft } from "react-icons/md";
-import Book from "./Book.json";
-import Heart from "./Heart";
+import Book from "../Mockdata/Book.json";
+import Heart from "../Catagories/Heart";
 
 function AllRentCategory({ selectedCategory }) {
   const booksPerPage = 12;

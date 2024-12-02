@@ -71,14 +71,14 @@ function EditPost({ bookId }) {
     if (!bookData) return <div>Loading...</div>;
 
     return (
-        <div className="min-h-screen flex justify-center items-center bg-gray-100">
-            <div className="max-w-4xl w-full bg-white shadow-lg rounded-lg p-8">
-                <h1 className="text-2xl font-bold text-center mb-6">Edit Post</h1>
+        <div className="min-h-screen flex justify-center items-center bg-[#f9f9ff] px-32 py-10">
+            <div className="w-full bg-white shadow-lg rounded-lg p-20">
+                <h1 className="text-4xl font-cherry text-center mb-6">Edit Post</h1>
 
                 <form onSubmit={handleSaveChanges}>
                     {/* ข้อมูลหนังสือ */}
                     <section className="mb-8">
-                        <h2 className="text-xl font-semibold mb-4">Book Details</h2>
+                        <h2 className="text-xl font-serif mb-4">Book Details</h2>
                         <div className="grid gap-4 sm:grid-cols-2">
                             <input
                                 type="text"
@@ -86,7 +86,7 @@ function EditPost({ bookId }) {
                                 value={bookData.title}
                                 onChange={handleChange}
                                 placeholder="Title"
-                                className="input-field"
+                                className="rounded-full p-2 w-full pl-5  border-2 border-primary focus:outline-none mb-4"
                             />
                             <input
                                 type="text"
@@ -94,7 +94,7 @@ function EditPost({ bookId }) {
                                 value={bookData.author}
                                 onChange={handleChange}
                                 placeholder="Author"
-                                className="input-field"
+                                className="rounded-full p-2 w-full pl-5  border-2 border-primary focus:outline-none mb-4"
                             />
                             <input
                                 type="text"
@@ -102,7 +102,7 @@ function EditPost({ bookId }) {
                                 value={bookData.publisher}
                                 onChange={handleChange}
                                 placeholder="Publisher"
-                                className="input-field"
+                                className="rounded-full p-2 w-full pl-5  border-2 border-primary focus:outline-none mb-4"
                             />
                             <input
                                 type="text"
@@ -110,7 +110,7 @@ function EditPost({ bookId }) {
                                 value={bookData.category}
                                 onChange={handleChange}
                                 placeholder="Category"
-                                className="input-field"
+                                className="rounded-full p-2 w-full pl-5  border-2 border-primary focus:outline-none mb-4"
                             />
                         </div>
                         <textarea
@@ -118,13 +118,13 @@ function EditPost({ bookId }) {
                             value={bookData.description}
                             onChange={handleChange}
                             placeholder="Description"
-                            className="input-field mt-4 h-24"
+                            className="mt-4 h-24 rounded-2xl p-2 w-full pl-5  border-2 border-primary focus:outline-none"
                         />
                     </section>
 
                     {/* แนบรูป */}
                     <section className="mb-8">
-                        <h2 className="text-xl font-semibold mb-4">Upload Images</h2>
+                        <h2 className="text-xl font-serif mb-4">Upload Images</h2>
                         <input
                             type="file"
                             multiple
@@ -133,18 +133,19 @@ function EditPost({ bookId }) {
                          file:mr-4 file:py-2 file:px-4
                          file:rounded-full file:border-0
                          file:text-sm file:font-semibold
-                         file:bg-indigo-50 file:text-indigo-700
-                         hover:file:bg-indigo-100"
+                         file:bg-primarycontainer file:text-primary
+                         hover:file:bg-purple-700"
                         />
                     </section>
 
                     {/* ประเภทโพสต์ */}
                     <section className="mb-8">
-                        <h2 className="text-xl font-semibold mb-4">Post Type</h2>
+                        <h2 className="text-xl font-serif mb-4">Post Type</h2>
                         <div className="flex gap-4">
                             <label className="flex items-center gap-2">
                                 <input
                                     type="radio"
+                                    className="accent-purple-700"
                                     value="sell"
                                     checked={postType === "sell"}
                                     onChange={() => setPostType("sell")}
@@ -154,6 +155,7 @@ function EditPost({ bookId }) {
                             <label className="flex items-center gap-2">
                                 <input
                                     type="radio"
+                                    className="accent-purple-700"
                                     value="rent"
                                     checked={postType === "rent"}
                                     onChange={() => setPostType("rent")}
@@ -166,14 +168,14 @@ function EditPost({ bookId }) {
                     {/* ข้อมูลเพิ่มเติมตามประเภทโพสต์ */}
                     {postType === "sell" && (
                         <section className="mb-8">
-                            <h2 className="text-xl font-semibold mb-4">Sell Details</h2>
+                            <h2 className="ml-5 text-lg font-serif mb-4">Sell Details</h2>
                             <input
                                 type="text"
                                 name="condition"
                                 value={bookData.condition}
                                 onChange={handleChange}
                                 placeholder="Condition"
-                                className="input-field"
+                                className="rounded-full p-2 w-full pl-5  border-2 border-primary focus:outline-none mb-4"
                             />
                             <input
                                 type="number"
@@ -181,14 +183,14 @@ function EditPost({ bookId }) {
                                 value={bookData.price}
                                 onChange={handleChange}
                                 placeholder="Price"
-                                className="input-field mt-4"
+                                className="rounded-full p-2 w-full pl-5  border-2 border-primary focus:outline-none mb-4"
                             />
                         </section>
                     )}
 
                     {postType === "rent" && (
                         <section className="mb-8">
-                            <h2 className="text-xl font-semibold mb-4">Rent Details</h2>
+                            <h2 className="ml-5 text-lg font-serif mb-4">Rent Details</h2>
                             <div className="grid gap-4 sm:grid-cols-3">
                                 <input
                                     type="number"
@@ -196,7 +198,7 @@ function EditPost({ bookId }) {
                                     value={bookData.rentPrices.fiveDays}
                                     onChange={handleRentChange}
                                     placeholder="5 Days Price"
-                                    className="input-field"
+                                    className="rounded-full p-2 w-full pl-5  border-2 border-primary focus:outline-none mb-4"
                                 />
                                 <input
                                     type="number"
@@ -204,7 +206,7 @@ function EditPost({ bookId }) {
                                     value={bookData.rentPrices.sevenDays}
                                     onChange={handleRentChange}
                                     placeholder="7 Days Price"
-                                    className="input-field"
+                                    className="rounded-full p-2 w-full pl-5  border-2 border-primary focus:outline-none mb-4"
                                 />
                                 <input
                                     type="number"
@@ -212,7 +214,7 @@ function EditPost({ bookId }) {
                                     value={bookData.rentPrices.fourteenDays}
                                     onChange={handleRentChange}
                                     placeholder="14 Days Price"
-                                    className="input-field"
+                                    className="rounded-full p-2 w-full pl-5  border-2 border-primary focus:outline-none mb-4"
                                 />
                             </div>
                         </section>
@@ -220,7 +222,7 @@ function EditPost({ bookId }) {
 
                     {/* ข้อมูลการติดต่อ */}
                     <section className="mb-8">
-                        <h2 className="text-xl font-semibold mb-4">Contact Information</h2>
+                        <h2 className="text-xl font-serif mb-4">Contact Information</h2>
                         <div className="grid gap-4 sm:grid-cols-2">
                             <input
                                 type="text"
@@ -233,7 +235,7 @@ function EditPost({ bookId }) {
                                     }))
                                 }
                                 placeholder="Phone Number"
-                                className="input-field"
+                                className="rounded-full p-2 w-full pl-5  border-2 border-primary focus:outline-none mb-4"
                             />
                             <input
                                 type="text"
@@ -246,7 +248,7 @@ function EditPost({ bookId }) {
                                     }))
                                 }
                                 placeholder="Line ID"
-                                className="input-field"
+                                className="rounded-full p-2 w-full pl-5  border-2 border-primary focus:outline-none mb-4"
                             />
                         </div>
                     </section>
@@ -256,13 +258,13 @@ function EditPost({ bookId }) {
                         <button
                             type="button"
                             onClick={() => alert("Cancel editing")}
-                            className="px-6 py-3 bg-gray-300 text-gray-700 font-medium text-lg rounded hover:bg-gray-400"
+                            className="px-6 py-3 bg-gray-300 text-gray-700 font-serif font-bold text-lg rounded-full hover:bg-gray-400"
                         >
                             Cancel
                         </button>
                         <button
                             type="submit"
-                            className="px-6 py-3 bg-indigo-500 text-white font-medium text-lg rounded hover:bg-indigo-600"
+                            className="px-6 py-3 bg-primary text-white font-serif font-bold text-xl rounded-full hover:bg-purple-700"
                         >
                             Save Changes
                         </button>

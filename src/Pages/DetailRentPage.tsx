@@ -1,6 +1,6 @@
 import { IoIosArrowBack } from "react-icons/io";
-import DetailRentBook from "../components/Catagories/DetailRentBook";
-import RecDetailRent from "../components/Catagories/RecDetailRent";
+import DetailRentBook from "../components/DatailBook/DetailRentBook";
+import RecDetailRent from "../components/DatailBook/RecDetailRent";
 
 const DetailRentPage = () => {
   

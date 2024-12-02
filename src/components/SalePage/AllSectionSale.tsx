@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
-import Heart from './Heart';
-import Book from "./Book.json";
+import Heart from '../Catagories/Heart';
+import Book from "../Mockdata/Book.json";
 
-function AllSectionRent() {
+function AllSectionSale() {
 
 
   const [visibleBooks, setVisibleBooks] = useState(3); 
@@ -41,18 +41,16 @@ function AllSectionRent() {
       </div>
 
       
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {Book.slice(0, visibleBooks).map((book, index) => (
           <div
             key={index}
-            className="border rounded-lg p-4 text-center relative w-72 shadow-md"
+            className="border rounded-lg p-2 text-center relative w-72 shadow-md"
           >
             <img src={book.images[0]} alt={book.title} className="w-full h-48 object-contain rounded-md mb-2" />
             <h3 className="text-sm font-cherry">{book.title}</h3>
             <p className="text-sm text-gray-500 mb-2">{book.author}</p>
-            <p className={`p-4 text-right text-lg font-bold ${book.status === 'Rented' ? 'text-rented' : 'text-available'}`}>
-              {book.status}
-            </p>
+            <p className="p-4 text-left text-lg text-gray-700 font-bold ">{book.price} THB</p>
             <div className="absolute top-2 right-2 flex items-center justify-center bg-gray-300 rounded-full w-8 h-8">
               < Heart/>
             </div>
@@ -66,4 +64,4 @@ function AllSectionRent() {
   );
 }
 
-export default AllSectionRent;
+export default AllSectionSale;

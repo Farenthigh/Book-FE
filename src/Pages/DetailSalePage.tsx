@@ -1,6 +1,6 @@
 import { IoIosArrowBack } from "react-icons/io";
-import DetailSaleBook from "../components/Catagories/DetailSaleBook";
-import RecDetailSale from "../components/Catagories/RecDetailSale";
+import DetailSaleBook from "../components/DatailBook/DetailSaleBook";
+import RecDetailSale from "../components/DatailBook/RecDetailSale";
 
 const DetailSalePage = () => {
   

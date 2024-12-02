@@ -1,8 +1,7 @@
-import Heart from "./Heart";
-import Book from "./Book.json";
+import Heart from "../Catagories/Heart";
+import Book from "../Mockdata/Book.json";
 
-
-function RecDetailRent() {
+function RecDetailSale() {
  
   return (
     <section>
@@ -22,11 +21,10 @@ function RecDetailRent() {
                 <img src={book.images[0]} alt={book.title} className=" w-full h-48 object-contain rounded-md mb-2" /> 
                 <h3 className="text-sm font-cherry font-bold">{book.title}</h3>
                 <p className="text-sm text-gray-500 mb-2">{book.author}</p>
-                <p className={`p-4 text-right text-lg font-bold ${book.status === 'Rented' ? 'text-rented' : 'text-available'}`}>
-                  {book.status}
-                </p>
+                <p className="p-4 text-left text-lg text-gray-700 font-bold ">{book.price} THB</p>
+                
                 <div className="absolute top-2 right-2 flex items-center justify-center bg-gray-300 rounded-full w-8 h-8">
-                  <Heart />
+                  <Heart/>
                 </div>
                 <button className="mt-2 mb-2 px-4 py-1 bg-primary font-cherry text-white rounded-full hover:bg-purple-600 transition">
                   Show details
@@ -40,4 +38,4 @@ function RecDetailRent() {
   );
 }
 
-export default RecDetailRent;
+export default RecDetailSale;

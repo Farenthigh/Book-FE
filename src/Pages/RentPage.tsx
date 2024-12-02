@@ -1,6 +1,6 @@
 import Slidebar from "../components/Catagories/Dropdown";
-import RecommededSectionRent from "../components/Catagories/RecommededSectionRent";
-import AllSectionRent from "../components/Catagories/AllSectionRent";
+import RecommededSectionRent from "../components/RentPage/RecommededSectionRent";
+import AllSectionRent from "../components/RentPage/AllSectionRent";
 import Salebanner from "../components/Banner/Salebanner";
 
 const RentPage = () => {

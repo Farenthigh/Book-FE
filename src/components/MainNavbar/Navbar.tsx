@@ -10,7 +10,7 @@ import ResponsiveMenu from "./ResponsiveMenu";
 const Navbar = () => {
   const [opens, setOpens] = useState(false);
   const [open, setOpen] = React.useState(false);
-  const Menus = ['Profile', 'Orders', 'Logout'];
+  const Menus = ['Profile', 'Logout'];
   const menuRef = useRef();
   const buttRef = useRef();
   
