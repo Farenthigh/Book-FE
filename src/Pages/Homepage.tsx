@@ -3,9 +3,7 @@ import banner4 from "../assets/banner4.png";
 import SaleRentButtom from "../components/Catagories/SaleRentButton";
 import Footer from "../components/Footer/Footer";
 import { AuthContext } from "../context/Auth";
-import AddPost from "./AddPost";
-import EditPost from "./EditPost";
-import Mix from "./Post";
+
 
 const Homepage = () => {
   const auth = useContext(AuthContext);
@@ -13,10 +11,6 @@ const Homepage = () => {
 
   return (
     <>
-    <Mix/>
-    <AddPost/>
-    <EditPost/>
-
     <div className="bg-[#f9f9ff]">
       {!auth?.auth.isAuth ?(
         
