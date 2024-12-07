@@ -15,7 +15,7 @@ const Navbar = () => {
   const auth = useContext(AuthContext);
   const [opens, setOpens] = useState(false);
   const [open, setOpen] = React.useState(false);
-  const Menus = ['Profile', 'Logout'];
+  const Menus = ['Profile','ประกาศการขาย','Addpost', 'Logout'];
   const menuRef = useRef();
   const buttRef = useRef();
 

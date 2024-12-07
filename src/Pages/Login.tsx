@@ -59,7 +59,7 @@ const Login = () => {
               placeholder="Email*"
             ></input>
             <input
-              className="rounded-full bg-primarycontainer p-2 w-full pl-5  border border-gray-300 focus:border-primary focus:outline-none"
+              className="rounded-full bg-primarycontainer p-2 w-full  border border-gray-300 focus:border-primary focus:outline-none pl-5 pr-8"
               name="password"
               type="password"
               placeholder="Password*"

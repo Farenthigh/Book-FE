@@ -122,7 +122,7 @@ function AddPost() {
                          file:rounded-full file:border-0
                          file:text-sm file:font-semibold
                          file:bg-primarycontainer file:text-primary
-                         hover:file:bg-purple-700"
+                         hover:file:bg-purple-300"
                         />
                     </section>
 
