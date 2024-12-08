@@ -9,17 +9,15 @@ import { NavItem } from "../../context/nav-item";
 import { LOGIN_ROUTE, SIGNUP_ROUTE } from "../../context/Route";
 import { axiosInstance } from "../../helper/axiosInstance";
 import ResponsiveMenu from "./ResponsiveMenu";
-
-
+import { FAV_ROUTE } from "../../context/Route";
+import { CART_ROUTE } from "../../context/Route";
 const Navbar = () => {
   const auth = useContext(AuthContext);
   const [opens, setOpens] = useState(false);
   const [open, setOpen] = React.useState(false);
-  const Menus = ['Profile','ประกาศการขาย','Addpost', 'Logout'];
+  const Menus = ["Profile", "Allpost", "Addpost", "Logout"];
   const menuRef = useRef();
   const buttRef = useRef();
-
-  
 
   const handleLogout = async () => {
     try {
@@ -29,6 +27,23 @@ const Navbar = () => {
       }
     } catch (error) {
       console.log(error);
+    }
+  };
+  const handlePopupItemClicked = (item) => {
+    setOpens(false);
+    switch (item) {
+      case "Profile":
+        window.location.href = "/profile";
+        break;
+      case "Allpose":
+        window.location.href = "/allpost";
+        break;
+      case "Addpost":
+        window.location.href = "/addpost";
+        break;
+      case "Logout":
+        handleLogout();
+        break;
     }
   };
 
@@ -72,12 +87,16 @@ const Navbar = () => {
 
           {/* Icon Section */}
           <div className="flex items-center gap-4">
-            <button className="text-2xl">
-              <FaRegHeart />
-            </button>
-            <button className="text-2xl">
-              <FiShoppingCart />
-            </button>
+            <Link to={FAV_ROUTE}>
+              <button className="text-2xl">
+                <FaRegHeart />
+              </button>
+            </Link>
+            <Link to={CART_ROUTE}>
+              <button className="text-2xl">
+                <FiShoppingCart />
+              </button>
+            </Link>
             {auth?.auth.isAuth ? (
               <div className="relative">
                 <button
@@ -98,12 +117,7 @@ const Navbar = () => {
                     <ul>
                       {Menus.map((menu) => (
                         <li
-                          onClick={() => {
-                            setOpens(false);
-                            if (menu === "Logout") {
-                              handleLogout();
-                            }
-                          }}
+                          onClick={() => handlePopupItemClicked(menu)}
                           className="p-2 text-lg cursor-pointer hover:bg-gray-100 rounded"
                           key={menu}
                         >
