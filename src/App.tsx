@@ -6,6 +6,7 @@ import {
   ADDPOST_ROUTE,
   AUTHORS_ROUTE,
   BOOK_ROUTE,
+  CART_ROUTE,
   CONTACTS_ROUTE,
   EDITPOST_ROUTE,
   // ALLCAT_ROUTE,
@@ -27,7 +28,7 @@ import { axiosInstance } from "./helper/axiosInstance";
 import Homepage from "./Pages/Homepage";
 import Login from "./Pages/Login";
 import SalePage from "./Pages/SalePage";
-// import CartPage from "./Pages/CartPage";
+import CartPage from "./Pages/CartPage";
 import RentPage from "./Pages/RentPage";
 // import AllsaleCatagories from "./Pages/AllsaleCatagories";
 import DetailRentPage from "./Pages/DetailRentPage";
@@ -101,6 +102,7 @@ function App() {
             </Route>
             <Route path={LOGIN_ROUTE} element={<Login></Login>}></Route>
             <Route path={SIGNUP_ROUTE} element={<Signup></Signup>}></Route>
+            <Route path={CART_ROUTE} element={<CartPage></CartPage>}></Route>
             <Route path="*" element={<div>not Found</div>}></Route>
           </Routes>
         </BrowserRouter>

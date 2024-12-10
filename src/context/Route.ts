@@ -14,5 +14,6 @@ export const BOOK_ROUTE = "/book";
 export const AUTHORS_ROUTE = "/authors";
 export const PUBLICHER_ROUTE = "/publishers";
 export const CONTACTS_ROUTE = "/contacts";
+export const CART_ROUTE = "/cart";
 
 export const SIGNUP_ROUTE = "/signup";
