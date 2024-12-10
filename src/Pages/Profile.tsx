@@ -12,7 +12,6 @@ const UserProfile = () => {
     });
 
     const [addressInfo, setAddressInfo] = useState({
-        name: "",
         address: "",
         subdistrict: "",
         district: "",
