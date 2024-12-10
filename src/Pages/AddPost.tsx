@@ -92,7 +92,7 @@ function AddPost() {
                                 placeholder="Publisher"
                                 className="rounded-full p-2 w-full pl-5  border-2 border-primary focus:outline-none"
                             />
-                             <select
+                            <select
                                 name="category"
                                 value={bookData.category}
                                 onChange={handleChange}
