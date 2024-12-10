@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import close from "../assets/close.png";
 
 function AddPost() {
+  const navigate = useNavigate(); // ใช้สำหรับการนำทางกลับ
   const [postType, setPostType] = useState("sell"); // "sell" หรือ "rent"
   const [bookData, setBookData] = useState({
     title: "",
@@ -59,65 +61,74 @@ function AddPost() {
     alert("Book posted successfully!");
   };
 
+  const handleClose = () => {
+    navigate(-1); 
+  };
+
   return (
     <div className="min-h-screen flex justify-center items-center bg-[#f9f9ff] px-32 py-10">
       <div className="w-full bg-white shadow-lg rounded-lg p-20">
         <div className="flex justify-end p-5">
-          <img src={close} alt="close" />
+          <img
+            src={close}
+            alt="close"
+            className="cursor-pointer"
+            onClick={handleClose} // เพิ่มการเรียก handleClose
+          />
         </div>
         <h1 className="text-4xl font-cherry text-center mb-6">Add Post</h1>
 
-                <form onSubmit={handleSubmit}>
-                    {/* ข้อมูลหนังสือ */}
-                    <section className="mb-8">
-                        <h2 className="text-xl font-serif mb-4">Book Details</h2>
-                        <div className="grid gap-4 sm:grid-cols-2">
-                            <input
-                                type="text"
-                                name="title"
-                                value={bookData.title}
-                                onChange={handleChange}
-                                placeholder="Title"
-                                className="rounded-full p-2 w-full pl-5  border-2 border-primary focus:outline-none"
-                            />
-                            <input
-                                type="text"
-                                name="author"
-                                value={bookData.author}
-                                onChange={handleChange}
-                                placeholder="Author"
-                               className="rounded-full p-2 w-full pl-5  border-2 border-primary focus:outline-none"
-                            />
-                            <input
-                                type="text"
-                                name="publisher"
-                                value={bookData.publisher}
-                                onChange={handleChange}
-                                placeholder="Publisher"
-                                className="rounded-full p-2 w-full pl-5  border-2 border-primary focus:outline-none"
-                            />
-                            <select
-                                name="category"
-                                value={bookData.category}
-                                onChange={handleChange}
-                                className="rounded-full p-2 w-full pl-5 border-2 border-primary focus:outline-none"
-                            >
-                                <option value="Manga">Manga</option>
-                                <option value="Psychology">Psychology</option>
-                                <option value="Education">Education</option>
-                                <option value="Fiction">Fiction</option>
-                                <option value="Novel">Novel</option>
-                                <option value="Literature">Literature</option>
-                            </select>
-                        </div>
-                        <textarea
-                            name="description"
-                            value={bookData.description}
-                            onChange={handleChange}
-                            placeholder="Description"
-                            className="mt-4 h-24 rounded-2xl p-2 w-full pl-5  border-2 border-primary focus:outline-none"
-                        />
-                    </section>
+        <form onSubmit={handleSubmit}>
+          {/* ข้อมูลหนังสือ */}
+          <section className="mb-8">
+            <h2 className="text-xl font-serif mb-4">Book Details</h2>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <input
+                type="text"
+                name="title"
+                value={bookData.title}
+                onChange={handleChange}
+                placeholder="Title"
+                className="rounded-full p-2 w-full pl-5  border-2 border-primary focus:outline-none"
+              />
+              <input
+                type="text"
+                name="author"
+                value={bookData.author}
+                onChange={handleChange}
+                placeholder="Author"
+                className="rounded-full p-2 w-full pl-5  border-2 border-primary focus:outline-none"
+              />
+              <input
+                type="text"
+                name="publisher"
+                value={bookData.publisher}
+                onChange={handleChange}
+                placeholder="Publisher"
+                className="rounded-full p-2 w-full pl-5  border-2 border-primary focus:outline-none"
+              />
+              <select
+                name="category"
+                value={bookData.category}
+                onChange={handleChange}
+                className="rounded-full p-2 w-full pl-5 border-2 border-primary focus:outline-none"
+              >
+                <option value="Manga">Manga</option>
+                <option value="Psychology">Psychology</option>
+                <option value="Education">Education</option>
+                <option value="Fiction">Fiction</option>
+                <option value="Novel">Novel</option>
+                <option value="Literature">Literature</option>
+              </select>
+            </div>
+            <textarea
+              name="description"
+              value={bookData.description}
+              onChange={handleChange}
+              placeholder="Description"
+              className="mt-4 h-24 rounded-2xl p-2 w-full pl-5  border-2 border-primary focus:outline-none"
+            />
+          </section>
 
           {/* แนบรูป */}
           <section className="mb-8">
@@ -162,31 +173,31 @@ function AddPost() {
             </div>
           </section>
 
-                    {/* ข้อมูลเพิ่มเติมตามประเภทโพสต์ */}
-                    {postType === "sell" && (
-                        <section className="mb-8">
-                            <h2 className="ml-5 text-lg font-serif mb-4">Sell Details</h2>
-                            <select
-                                name="condition"
-                                value={bookData.condition}
-                                onChange={handleChange}
-                                className="rounded-full p-2 w-full pl-5  border-2 border-primary focus:outline-none mb-4"
-                            >
-                                <option value="New">New</option>
-                                <option value="Like New">Like New</option>
-                                <option value="Good">Good</option>
-                                <option value="Acceptable">Acceptable</option>
-                            </select>
-                            <input
-                                type="number"
-                                name="price"
-                                value={bookData.price}
-                                onChange={handleChange}
-                                placeholder="Price"
-                                className="rounded-full p-2 w-full pl-5  border-2 border-primary focus:outline-none"
-                            />
-                        </section>
-                    )}
+          {/* ข้อมูลเพิ่มเติมตามประเภทโพสต์ */}
+          {postType === "sell" && (
+            <section className="mb-8">
+              <h2 className="ml-5 text-lg font-serif mb-4">Sell Details</h2>
+              <select
+                name="condition"
+                value={bookData.condition}
+                onChange={handleChange}
+                className="rounded-full p-2 w-full pl-5  border-2 border-primary focus:outline-none mb-4"
+              >
+                <option value="New">New</option>
+                <option value="Like New">Like New</option>
+                <option value="Good">Good</option>
+                <option value="Acceptable">Acceptable</option>
+              </select>
+              <input
+                type="number"
+                name="price"
+                value={bookData.price}
+                onChange={handleChange}
+                placeholder="Price"
+                className="rounded-full p-2 w-full pl-5  border-2 border-primary focus:outline-none"
+              />
+            </section>
+          )}
 
           {postType === "rent" && (
             <section className="mb-8">

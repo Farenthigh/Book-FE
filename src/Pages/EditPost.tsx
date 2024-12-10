@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import {ALLPOST_ROUTE} from "../context/Route"
 
 function EditPost() {
   const { bookId } = useParams();
@@ -257,13 +258,14 @@ function EditPost() {
 
                     {/* ปุ่ม Save และ Cancel */}
                     <div className="flex justify-between">
-                        <button
+                        <Link
+                            to={ALLPOST_ROUTE}
                             type="button"
                             onClick={() => alert("Cancel editing")}
                             className="px-6 py-3 bg-gray-300 text-gray-700 font-serif font-bold text-lg rounded-full hover:bg-gray-400"
                         >
                             Cancel
-                        </button>
+                        </Link>
                         <button
                             type="submit"
                             className="px-6 py-3 bg-primary text-white font-serif font-bold text-xl rounded-full hover:bg-purple-700"

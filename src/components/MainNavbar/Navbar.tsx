@@ -35,7 +35,7 @@ const Navbar = () => {
       case "Profile":
         window.location.href = "/profile";
         break;
-      case "Allpose":
+      case "Allpost":
         window.location.href = "/allpost";
         break;
       case "Addpost":

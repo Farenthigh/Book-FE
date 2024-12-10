@@ -9,7 +9,7 @@ import {
   CART_ROUTE,
   CONTACTS_ROUTE,
   EDITPOST_ROUTE,
-  // ALLCAT_ROUTE,
+  ALLPOST_ROUTE,
   // CART_ROUTE,
   // DETAIL_ROUTE,
   FAV_ROUTE,
@@ -30,7 +30,6 @@ import Login from "./Pages/Login";
 import SalePage from "./Pages/SalePage";
 import CartPage from "./Pages/CartPage";
 import RentPage from "./Pages/RentPage";
-// import AllsaleCatagories from "./Pages/AllsaleCatagories";
 import DetailRentPage from "./Pages/DetailRentPage";
 import DetailSalePage from "./Pages/DetailSalePage";
 import FavoritePage from "./Pages/FavoritePage";
@@ -44,6 +43,8 @@ import EditPost from "./Pages/EditPost";
 import Profile from "./Pages/Profile";
 import Signup from "./Pages/Signup";
 import Test from "./Pages/Test";
+import Post from "./Pages/Post";
+
 
 function App() {
   const [auth, setAuth] = useState<IUserData>(InitAuthValue);
@@ -88,11 +89,11 @@ function App() {
               <Route path={TEST_ROUTE} element={<Test />}></Route>
               <Route path={SALE_ROUTE} element={<SalePage />} />
               <Route path={RENT_ROUTE} element={<RentPage />} />
-              {/* <Route path={ALLCAT_ROUTE} element={<AllsaleCatagories />} /> */}
               <Route path={S_DETAIL_ROUTE} element={<DetailSalePage />} />
               <Route path={R_DETAIL_ROUTE} element={<DetailRentPage />} />
               <Route path={FAV_ROUTE} element={<FavoritePage />} />
               <Route path={PROFILE_ROUTE} element={<Profile />} />
+              <Route path={ALLPOST_ROUTE} element={<Post />} />
               <Route path={ADDPOST_ROUTE} element={<AddPost />} />
               <Route path={EDITPOST_ROUTE} element={<EditPost />} />
               <Route path={BOOK_ROUTE} element={<Books />} />

@@ -5,7 +5,6 @@ import { axiosInstance } from "../helper/axiosInstance";
 import { IUserSignup } from "../interfaces/userSignup";
 import { Link, useNavigate } from "react-router-dom";
 import { LOGIN_ROUTE, SIGNUP_ROUTE, USER_HOME_ROUTE } from "../context/Route";
-import Homepage from "./Homepage";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -24,7 +23,7 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(userSignup);
-    if (userSignup.comfirmpassword != userSignup.password) {
+    if (userSignup.comfirmpassword !== userSignup.password) {
       console.log("error");
       return;
     }
@@ -39,14 +38,25 @@ const Signup = () => {
     }
   };
 
+  const handleClose = () => {
+    navigate(-1); 
+  };
+
   useEffect(() => {
     console.log(userSignup);
   }, [userSignup]);
+
   return (
     <form onChange={handleOnChange} onSubmit={handleSubmit} className="bg-[#f9f9ff] px-32 py-2 ">
       <div className="bg-white shadow-lg rounded-lg">
         <div className="flex justify-end p-5">
-          <img src={close} alt="close" />
+          {/* เพิ่ม onClick สำหรับปุ่ม close */}
+          <img
+            src={close}
+            alt="close"
+            className="cursor-pointer"
+            onClick={handleClose} // เรียกใช้ฟังก์ชัน handleClose
+          />
         </div>
         <div className="p-10 flex justify-center">
           <img src={logopurple} alt="logopurple" />
@@ -56,8 +66,7 @@ const Signup = () => {
         </div>
         <div className="flex justify-center w-full">
           <div className="flex flex-col items-center w-1/3 p-2 gap-5">
-          {/* <input type="button" value={`logout`} onClick={handleLogout}></input> */}
-          <div className="flex gap-1">
+            <div className="flex gap-1">
               <div className="flex justify-end">Have an account?</div>
               <Link to={LOGIN_ROUTE}>
                 <div className="flex justify-start text-sub gap-5 text-purple-400 hover:underline transition-colors duration-200">Login</div>

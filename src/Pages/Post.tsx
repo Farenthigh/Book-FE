@@ -1,4 +1,5 @@
-
+import { Link } from "react-router-dom";
+import {EDITPOST_ROUTE} from "../context/Route";
 import Book from "../components/Mockdata/Book.json";
 
 
@@ -7,7 +8,7 @@ const Post = () => {
     <>
         <div className="bg-[#f9f9ff] px-32 py-10">
             <div className="bg-white shadow-lg rounded-lg p-20">
-            <h1 className="text-4xl font-cherry text-center mb-6">ประกาศขายของฉัน</h1>    
+            <h1 className="text-4xl font-cherry text-center mb-6">All Post</h1>    
             <div  className=" justify-center p-6">
                 {Book.slice(0, 4).map((book, index) => (
                 <div
@@ -29,9 +30,9 @@ const Post = () => {
                             กรุณาใส่ข้อมูลเพิ่มเติม หรือแก้ไขข้อมูลให้ถูกต้อง อ่านข้อมูลเพิ่มเติมได้
                         </p>
                         <div className="flex space-x-4">
-                            <button className=" px-4 py-2 bg-primary text-white rounded-full hover:bg-purple-700">
+                            <Link to={EDITPOST_ROUTE} className=" px-4 py-2 bg-primary text-white rounded-full hover:bg-purple-700">
                                 Edit Post
-                            </button>
+                            </Link>
                             <button className=" px-4 py-2 bg-primary text-white rounded-full hover:bg-purple-700">
                                 Delete
                             </button>

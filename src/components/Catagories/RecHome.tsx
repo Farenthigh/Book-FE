@@ -1,6 +1,7 @@
 import Heart from "./Heart";
 import Book from "../Mockdata/Book.json";
-import { RENT_ROUTE } from "../../context/Route";
+import {S_DETAIL_ROUTE} from "../../context/Route"
+import { SALE_ROUTE } from "../../context/Route";
 import { Link } from "react-router-dom";
 
 function RecHome() {
@@ -34,9 +35,9 @@ function RecHome() {
                 <div className="absolute top-2 right-2 flex items-center justify-center bg-gray-300 rounded-full w-8 h-8">
                   <Heart />
                 </div>
-                <button className=" mb-2 px-4 py-1 bg-primary font-cherry text-white rounded-full hover:bg-purple-600 transition">
+                <Link to={S_DETAIL_ROUTE} className=" mb-2 px-4 py-1 bg-primary font-cherry text-white rounded-full hover:bg-purple-600 transition">
                   Show details
-                </button>
+                </Link>
               </div>
             ))}
           </div>
@@ -45,7 +46,7 @@ function RecHome() {
 
       <div className="mt-10 text-right pr-5 text-lg ">
         <Link
-          to={RENT_ROUTE}
+          to={SALE_ROUTE}
           href="#"
           className="text-purple-400 hover:underline transition-colors duration-200"
         >

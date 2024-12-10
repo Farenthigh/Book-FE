@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+import {R_DETAIL_ROUTE} from "../../context/Route";
 import Heart from "../Catagories/Heart";
 import Book from "../Mockdata/Book.json";
 
@@ -28,9 +30,9 @@ function RecDetailRent() {
                 <div className="absolute top-2 right-2 flex items-center justify-center bg-gray-300 rounded-full w-8 h-8">
                   <Heart />
                 </div>
-                <button className="mt-2 mb-2 px-4 py-1 bg-primary font-cherry text-white rounded-full hover:bg-purple-600 transition">
+                <Link to={R_DETAIL_ROUTE} className="mt-2 mb-2 px-4 py-1 bg-primary font-cherry text-white rounded-full hover:bg-purple-600 transition">
                   Show details
-                </button>
+                </Link>
               </div>
             ))}
           </div>

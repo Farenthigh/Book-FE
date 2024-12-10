@@ -4,6 +4,7 @@ import Book from "../Mockdata/Book.json";
 import { FaPhone } from "react-icons/fa6";
 import { FaLine } from "react-icons/fa6";
 
+
 const DetailSaleBook = () => {
   
   const { title, author, publisher, category, description, Condition,price, images } = Book[0];
