@@ -107,14 +107,19 @@ function EditPost() {
                                 placeholder="Publisher"
                                 className="rounded-full p-2 w-full pl-5  border-2 border-primary focus:outline-none mb-4"
                             />
-                            <input
-                                type="text"
+                            <select
                                 name="category"
                                 value={bookData.category}
                                 onChange={handleChange}
-                                placeholder="Category"
                                 className="rounded-full p-2 w-full pl-5  border-2 border-primary focus:outline-none mb-4"
-                            />
+                            >
+                                <option value="Manga">Manga</option>
+                                <option value="Psychology">Psychology</option>
+                                <option value="Education">Education</option>
+                                <option value="Fiction">Fiction</option>
+                                <option value="Novel">Novel</option>
+                                <option value="Literature">Literature</option>
+                            </select>
                         </div>
                         <textarea
                             name="description"
@@ -172,14 +177,17 @@ function EditPost() {
                     {postType === "sell" && (
                         <section className="mb-8">
                             <h2 className="ml-5 text-lg font-serif mb-4">Sell Details</h2>
-                            <input
-                                type="text"
+                            <select
                                 name="condition"
                                 value={bookData.condition}
                                 onChange={handleChange}
-                                placeholder="Condition"
                                 className="rounded-full p-2 w-full pl-5  border-2 border-primary focus:outline-none mb-4"
-                            />
+                            >
+                                <option value="New">New</option>
+                                <option value="Like New">Like New</option>
+                                <option value="Good">Good</option>
+                                <option value="Acceptable">Acceptable</option>
+                            </select>
                             <input
                                 type="number"
                                 name="price"
