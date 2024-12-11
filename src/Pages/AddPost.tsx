@@ -5,7 +5,7 @@ import { axiosInstance } from "../helper/axiosInstance";
 
 function AddPost() {
   const navigate = useNavigate(); // ใช้สำหรับการนำทางกลับ
-  const [postType, setPostType] = useState("sale"); // "sell" หรือ "rent"
+  const [postType, setPostType] = useState<"sale" | "rent">("sale"); // "sell" หรือ "rent"
   const [bookData, setBookData] = useState({
     title: "",
     author: "",
@@ -185,7 +185,7 @@ function AddPost() {
                   className="accent-purple-700"
                   value="sale"
                   checked={postType === "sale"}
-                  onChange={ (e) => setPostType(e.target.value)}
+                  onChange={() => setPostType("sale")}
                   // onChange={() => setPostType("rent")}
                 />
                 sale
@@ -196,7 +196,7 @@ function AddPost() {
                   className="accent-purple-700"
                   value="rent"
                   checked={postType === "rent"}
-                  onChange={ (e) => setPostType(e.target.value)}
+                  onChange={() => setPostType("rent")}
                   // onChange={() => setPostType("sale")}
                 />
                 rent
