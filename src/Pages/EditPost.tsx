@@ -32,28 +32,30 @@ function EditPost() {
   useEffect(() => {
     // Fetch data from backend (mock example)
     const fetchBookData = async () => {
+      const response = await axiosInstance.get(`/book/findbook/${bookId}`);
+      console.log(response);
       const mockData = {
-        title: "Example Book",
-        author: "John Doe",
-        publisher: "BookHouse",
-        category: "Fiction",
-        description: "An exciting fiction novel.",
-        condition: "Good",
-        price: "250",
+        title: response.data.title,
+        author: response.data.author,
+        publisher: response.data.publisher,
+        category: response.data.category,
+        description: response.data.description,
+        condition: response.data.Condition,
+        price: response.data.price,
         rentPrices: {
-          fiveDays: "50",
-          sevenDays: "70",
-          fourteenDays: "100",
+          fivedayprice: response.data.fivedayprice,
+          sevendayprice: response.data.sevendayprice,
+          fourteendayprice: response.data.fourteendayprice,
         },
         contact: {
-          phone: "123456789",
-          lineID: "exampleID",
+          phoneNumber: response.data.phoneNumber,
+          lineID: response.data.lineID,
         },
-        postType: "sell", // หรือ "rent"
+        type: response.data.type, // หรือ "rent"
         images: [],
       };
       setBookData(mockData);
-      setPostType(mockData.postType);
+      setPostType(mockData.PostType);
     };
 
     fetchBookData();
@@ -71,7 +73,6 @@ function EditPost() {
         type: postType,
         Condition: bookData.Condition,
         price: bookData.price,
-        stock_quantity: "1",
         fivedayprice: bookData.rentPrices.fivedayprice,
         sevendayprice: bookData.rentPrices.sevendayprice,
         fourteendayprice: bookData.rentPrices.fourteendayprice,
@@ -207,7 +208,7 @@ function EditPost() {
                   checked={postType === "sale"}
                   onChange={() => setPostType("sale")}
                 />
-                Sell
+                sale
               </label>
               <label className="flex items-center gap-2">
                 <input
@@ -225,7 +226,7 @@ function EditPost() {
           {/* ข้อมูลเพิ่มเติมตามประเภทโพสต์ */}
           {postType === "sale" && (
             <section className="mb-8">
-              <h2 className="ml-5 text-lg font-serif mb-4">Sell Details</h2>
+              <h2 className="ml-5 text-lg font-serif mb-4">Sale Details</h2>
               <select
                 name="condition"
                 value={bookData.Condition}
@@ -254,7 +255,7 @@ function EditPost() {
               <div className="grid gap-4 sm:grid-cols-3">
                 <input
                   type="number"
-                  name="fiveDays"
+                  name="fivedayprice"
                   value={bookData.rentPrices.fivedayprice}
                   onChange={handleRentChange}
                   placeholder="5 Days Price"
@@ -262,7 +263,7 @@ function EditPost() {
                 />
                 <input
                   type="number"
-                  name="sevenDays"
+                  name="sevendayprice"
                   value={bookData.rentPrices.sevendayprice}
                   onChange={handleRentChange}
                   placeholder="7 Days Price"
@@ -270,7 +271,7 @@ function EditPost() {
                 />
                 <input
                   type="number"
-                  name="fourteenDays"
+                  name="fourteenday"
                   value={bookData.rentPrices.fourteendayprice}
                   onChange={handleRentChange}
                   placeholder="14 Days Price"

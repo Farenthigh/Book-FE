@@ -15,6 +15,21 @@ const Post = () => {
       console.log(error);
     }
   };
+
+  const handleSubmit = async (bookId) => {
+    // e.prevendefult ();
+    try {
+      const response = await axiosInstance.delete(`/book/deletebook/${bookId}`);
+      {
+        if (response.status === 200) {
+          alert("Delete Success");
+          window.location.href = "/allPost";
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
     fetchAllBook();
     console.log("my book ", myBook);
@@ -63,7 +78,11 @@ const Post = () => {
                       >
                         Edit Post
                       </Link>
-                      <button className=" px-4 py-2 bg-primary text-white rounded-full hover:bg-purple-700">
+                      <button
+                        className=" px-4 py-2 bg-primary text-white rounded-full hover:bg-purple-700"
+                        type="submit"
+                        onClick={() => handleSubmit(book.id)}
+                      >
                         Delete
                       </button>
                     </div>
