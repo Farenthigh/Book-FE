@@ -1,150 +1,187 @@
-import React, { useState } from "react";
+import { useContext, useState } from "react";
 import { FaUserEdit } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import close from "../assets/close.png";
 import logopurple from "../assets/logopurple.png";
+import { AuthContext } from "../context/Auth";
+import { PROFILE_ROUTE } from "../context/Route";
+import { axiosInstance } from "../helper/axiosInstance";
 
 const UserProfile = () => {
-    const navigate = useNavigate(); // สำหรับนำทางกลับหน้าเดิม
-    const [userInfo, setUserInfo] = useState({
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
-    });
+  const auth = useContext(AuthContext);
+  const navigate = useNavigate(); // สำหรับนำทางกลับหน้าเดิม
+  const [userInfo, setUserInfo] = useState({
+    firstname: "",
+    lastname: "",
+    email: "",
+    password: "",
+  });
 
-    const [addressInfo, setAddressInfo] = useState({
-        address: "",
-        subdistrict: "",
-        district: "",
-        province: "",
-        postalCode: "",
-    });
-
-    const [isEditing, setIsEditing] = useState(false);
-
-    const handleInputChange = (e, section) => {
-        const { name, value } = e.target;
-        if (section === "userInfo") {
-            setUserInfo({ ...userInfo, [name]: value });
-        } else if (section === "addressInfo") {
-            setAddressInfo({ ...addressInfo, [name]: value });
+  const [addressInfo, setAddressInfo] = useState({
+    address_line1: "",
+    subdistrict: "",
+    district: "",
+    province: "",
+    postal_code: "",
+  });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsEditing(!isEditing);
+    try {
+      const response = await axiosInstance.put(
+        `/user/updateuser/${auth?.auth.id}`,
+        {
+          firstname: userInfo.firstname,
+          lastname: userInfo.lastname,
+          email: userInfo.email,
+          password: userInfo.password,
+          address_line1: addressInfo.address_line1,
+          subdistrict: addressInfo.subdistrict,
+          district: addressInfo.district,
+          province: addressInfo.province,
+          postal_code: addressInfo.postal_code,
         }
-    };
+      );
+      console.log(response);
 
-    const toggleEdit = () => {
-        setIsEditing(!isEditing);
+      if (response.status === 200) {
         if (isEditing) {
-            console.log("Saved User Info:", userInfo);
-            console.log("Saved Address Info:", addressInfo);
-            alert("Your profile has been updated!");
+          console.log("Saved User Info:", userInfo);
+          console.log("Saved Address Info:", addressInfo);
+          alert("Your profile has been updated!");
         }
-    };
+        window.location.href = PROFILE_ROUTE;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-    const handleClose = () => {
-        navigate(-1); 
-    };
+  const [isEditing, setIsEditing] = useState(false);
 
-    return (
-        <div className="min-h-screen flex justify-center items-center bg-[#f9f9ff] px-32 py-10">
-            <div className="w-full bg-white shadow-lg rounded-lg">
-                <div className="flex justify-end p-5">
-                    {/* เพิ่ม onClick เพื่อเรียกฟังก์ชัน handleClose */}
-                    <img
-                        src={close}
-                        alt="close"
-                        className="cursor-pointer"
-                        onClick={handleClose}
-                    />
-                </div>
-                <div className="p-10 flex justify-center">
-                    <img src={logopurple} alt="logopurple" />
-                </div>
+  const handleInputChange = (e, section) => {
+    const { name, value } = e.target;
+    if (section === "userInfo") {
+      setUserInfo({ ...userInfo, [name]: value });
+    } else if (section === "addressInfo") {
+      setAddressInfo({ ...addressInfo, [name]: value });
+    }
+  };
 
-                <h1 className="text-4xl font-cherry text-center">User Profile</h1>
-                <div className="p-20">
-                    {/* My Account Section */}
-                    <div className="mb-8">
-                        <div className="flex justify-between">
-                            <h2 className="text-2xl font-serif mb-4">My Account</h2>
-                            <button onClick={toggleEdit}>
-                                {isEditing ? " " : <FaUserEdit size={20} />}
-                            </button>
-                        </div>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            {Object.keys(userInfo).map((key) => (
-                                <div key={key}>
-                                    <label
-                                        className="block text-gray-700 capitalize ml-5"
-                                        htmlFor={key}
-                                    >
-                                        {key.replace(/([A-Z])/g, " $1")}
-                                    </label>
-                                    <input
-                                        type="text"
-                                        id={key}
-                                        name={key}
-                                        value={userInfo[key]}
-                                        onChange={(e) => handleInputChange(e, "userInfo")}
-                                        disabled={!isEditing}
-                                        className={`w-full px-4 py-2 border rounded ${
-                                            isEditing
-                                                ? "rounded-full p-2 w-full pl-5  border-2 border-primary focus:outline-none"
-                                                : "rounded-full p-2 w-full pl-5 bg-primarycontainer border-2 border-gray-200 focus:outline-none"
-                                        }`}
-                                    />
-                                </div>
-                            ))}
-                        </div>
-                    </div>
+  const toggleEdit = () => {
+    setIsEditing(!isEditing);
+    if (isEditing) {
+      console.log("Saved User Info:", userInfo);
+      console.log("Saved Address Info:", addressInfo);
+      alert("Your profile has been updated!");
+    }
+  };
 
-                    {/* Shipping Address Section */}
-                    <div className="mb-8">
-                        <h2 className="text-2xl font-semibold mb-4">Shipping Address</h2>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            {Object.keys(addressInfo).map((key) => (
-                                <div key={key}>
-                                    <label
-                                        className="block text-gray-700 capitalize ml-5"
-                                        htmlFor={key}
-                                    >
-                                        {key.replace(/([A-Z])/g, " $1")}
-                                    </label>
-                                    <input
-                                        type="text"
-                                        id={key}
-                                        name={key}
-                                        value={addressInfo[key]}
-                                        onChange={(e) => handleInputChange(e, "addressInfo")}
-                                        disabled={!isEditing}
-                                        className={`w-full px-4 py-2 border rounded ${
-                                            isEditing
-                                                ? "rounded-full p-2 w-full pl-5  border-2 border-primary focus:outline-none"
-                                                : "rounded-full p-2 w-full pl-5 bg-primarycontainer border-2 border-gray-200 focus:outline-none"
-                                        }`}
-                                    />
-                                </div>
-                            ))}
-                        </div>
-                    </div>
+  const handleClose = () => {
+    navigate(-1);
+  };
 
-                    {/* Edit/Save Button */}
-                    <div className="flex justify-center">
-                        <button
-                            onClick={toggleEdit}
-                            className={`px-6 py-3 font-semibold text-lg rounded ${
-                                isEditing
-                                    ? "rounded-full text-xl w-36 bg-available text-white hover:bg-green-600"
-                                    : ""
-                            }`}
-                        >
-                            {isEditing ? "Save" : " "}
-                        </button>
-                    </div>
-                </div>
-            </div>
+  return (
+    <div className="min-h-screen flex justify-center items-center bg-[#f9f9ff] px-32 py-10">
+      <div className="w-full bg-white shadow-lg rounded-lg">
+        <div className="flex justify-end p-5">
+          {/* เพิ่ม onClick เพื่อเรียกฟังก์ชัน handleClose */}
+          <img
+            src={close}
+            alt="close"
+            className="cursor-pointer"
+            onClick={handleClose}
+          />
         </div>
-    );
+        <div className="p-10 flex justify-center">
+          <img src={logopurple} alt="logopurple" />
+        </div>
+
+        <h1 className="text-4xl font-cherry text-center">User Profile</h1>
+        <div className="p-20">
+          {/* My Account Section */}
+          <div className="mb-8">
+            <div className="flex justify-between">
+              <h2 className="text-2xl font-serif mb-4">My Account</h2>
+              <button onClick={toggleEdit}>
+                {isEditing ? " " : <FaUserEdit size={20} />}
+              </button>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {Object.keys(userInfo).map((key) => (
+                <div key={key}>
+                  <label
+                    className="block text-gray-700 capitalize ml-5"
+                    htmlFor={key}
+                  >
+                    {key.replace(/([A-Z])/g, " $1")}
+                  </label>
+                  <input
+                    type="text"
+                    id={key}
+                    name={key}
+                    value={userInfo[key]}
+                    onChange={(e) => handleInputChange(e, "userInfo")}
+                    disabled={!isEditing}
+                    className={`w-full px-4 py-2 border rounded ${
+                      isEditing
+                        ? "rounded-full p-2 w-full pl-5  border-2 border-primary focus:outline-none"
+                        : "rounded-full p-2 w-full pl-5 bg-primarycontainer border-2 border-gray-200 focus:outline-none"
+                    }`}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Shipping Address Section */}
+          <div className="mb-8">
+            <h2 className="text-2xl font-semibold mb-4">Shipping Address</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {Object.keys(addressInfo).map((key) => (
+                <div key={key}>
+                  <label
+                    className="block text-gray-700 capitalize ml-5"
+                    htmlFor={key}
+                  >
+                    {key.replace(/([A-Z])/g, " $1")}
+                  </label>
+                  <input
+                    type="text"
+                    id={key}
+                    name={key}
+                    value={addressInfo[key]}
+                    onChange={(e) => handleInputChange(e, "addressInfo")}
+                    disabled={!isEditing}
+                    className={`w-full px-4 py-2 border rounded ${
+                      isEditing
+                        ? "rounded-full p-2 w-full pl-5  border-2 border-primary focus:outline-none"
+                        : "rounded-full p-2 w-full pl-5 bg-primarycontainer border-2 border-gray-200 focus:outline-none"
+                    }`}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Edit/Save Button */}
+          <div className="flex justify-center">
+            <button
+              onClick={handleSubmit}
+              className={`px-6 py-3 font-semibold text-lg rounded ${
+                isEditing
+                  ? "rounded-full text-xl w-36 bg-available text-white hover:bg-green-600"
+                  : ""
+              }`}
+              //   onSubmit={handleSubmit}
+            >
+              {isEditing ? "Save" : ""}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default UserProfile;

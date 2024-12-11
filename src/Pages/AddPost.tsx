@@ -1,34 +1,65 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import close from "../assets/close.png";
+import { axiosInstance } from "../helper/axiosInstance";
 
 function AddPost() {
   const navigate = useNavigate(); // ใช้สำหรับการนำทางกลับ
-  const [postType, setPostType] = useState("sell"); // "sell" หรือ "rent"
+  const [postType, setPostType] = useState("sale"); // "sell" หรือ "rent"
   const [bookData, setBookData] = useState({
     title: "",
     author: "",
     publisher: "",
     category: "",
     description: "",
-    condition: "", // ใช้เฉพาะสำหรับการขาย
+    type: postType,
+    Condition: "", // ใช้เฉพาะสำหรับการขาย
     price: "", // ราคาสำหรับขาย
     rentPrices: {
       // ราคาสำหรับเช่า
-      fiveDays: "",
-      sevenDays: "",
-      fourteenDays: "",
+      fivedayprice: "",
+      sevendayprice: "",
+      fourteendayprice: "",
     },
     contact: {
-      phone: "",
+      phoneNumber: "",
       lineID: "",
     },
     images: [], // เก็บไฟล์รูป
   });
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axiosInstance.post("/book/add", {
+        title: bookData.title,
+        author: bookData.author,
+        publisher: bookData.publisher,
+        category: bookData.category,
+        description: bookData.description,
+        type: postType,
+        Condition: bookData.Condition,
+        price: bookData.price,
+        stock_quantity: "1",
+        fivedayprice: bookData.rentPrices.fivedayprice,
+        sevendayprice: bookData.rentPrices.sevendayprice,
+        fourteendayprice: bookData.rentPrices.fourteendayprice,
+        phoneNumber: bookData.contact.phoneNumber,
+        lineID: bookData.contact.lineID,
+      });
+      console.log(response);
+      if (response.status === 200) {
+        alert("Book posted successfully!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   // ฟังก์ชันจัดการการเปลี่ยนแปลงค่าในฟอร์ม
   const handleChange = (e) => {
     const { name, value } = e.target;
+    console.log(bookData);
     setBookData((prev) => ({
       ...prev,
       [name]: value,
@@ -55,14 +86,14 @@ function AddPost() {
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Book data submitted:", bookData);
-    alert("Book posted successfully!");
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log("Book data submitted:", bookData);
+  //   alert("Book posted successfully!");
+  //};
 
   const handleClose = () => {
-    navigate(-1); 
+    navigate(-1);
   };
 
   return (
@@ -154,11 +185,11 @@ function AddPost() {
                 <input
                   type="radio"
                   className="accent-purple-700"
-                  value="sell"
-                  checked={postType === "sell"}
-                  onChange={() => setPostType("sell")}
+                  value="sale"
+                  checked={postType === "sale"}
+                  onChange={() => setPostType("sale")}
                 />
-                Sell
+                sale
               </label>
               <label className="flex items-center gap-2">
                 <input
@@ -168,25 +199,25 @@ function AddPost() {
                   checked={postType === "rent"}
                   onChange={() => setPostType("rent")}
                 />
-                Rent
+                rent
               </label>
             </div>
           </section>
 
           {/* ข้อมูลเพิ่มเติมตามประเภทโพสต์ */}
-          {postType === "sell" && (
+          {postType === "sale" && (
             <section className="mb-8">
-              <h2 className="ml-5 text-lg font-serif mb-4">Sell Details</h2>
+              <h2 className="ml-5 text-lg font-serif mb-4">Sale Details</h2>
               <select
-                name="condition"
-                value={bookData.condition}
+                name="Condition"
+                value={bookData.Condition}
                 onChange={handleChange}
                 className="rounded-full p-2 w-full pl-5  border-2 border-primary focus:outline-none mb-4"
               >
-                <option value="New">New</option>
-                <option value="Like New">Like New</option>
-                <option value="Good">Good</option>
-                <option value="Acceptable">Acceptable</option>
+                <option value="new">new</option>
+                <option value="like New">like New</option>
+                <option value="good">good</option>
+                <option value="acceptable">acceptable</option>
               </select>
               <input
                 type="number"
@@ -205,24 +236,24 @@ function AddPost() {
               <div className="grid gap-4 sm:grid-cols-3">
                 <input
                   type="number"
-                  name="fiveDays"
-                  value={bookData.rentPrices.fiveDays}
+                  name="fivedayprice"
+                  value={bookData.rentPrices.fivedayprice}
                   onChange={handleRentChange}
                   placeholder="5 Days Price"
                   className="rounded-full p-2 w-full pl-5  border-2 border-primary focus:outline-none"
                 />
                 <input
                   type="number"
-                  name="sevenDays"
-                  value={bookData.rentPrices.sevenDays}
+                  name="sevendayprice"
+                  value={bookData.rentPrices.sevendayprice}
                   onChange={handleRentChange}
                   placeholder="7 Days Price"
                   className="rounded-full p-2 w-full pl-5  border-2 border-primary focus:outline-none"
                 />
                 <input
                   type="number"
-                  name="fourteenDays"
-                  value={bookData.rentPrices.fourteenDays}
+                  name="fourteendayprice"
+                  value={bookData.rentPrices.fourteendayprice}
                   onChange={handleRentChange}
                   placeholder="14 Days Price"
                   className="rounded-full p-2 w-full pl-5  border-2 border-primary focus:outline-none"
@@ -237,12 +268,12 @@ function AddPost() {
             <div className="grid gap-4 sm:grid-cols-2">
               <input
                 type="text"
-                name="phone"
-                value={bookData.contact.phone}
+                name="phoneNumber"
+                value={bookData.contact.phoneNumber}
                 onChange={(e) =>
                   setBookData((prev) => ({
                     ...prev,
-                    contact: { ...prev.contact, phone: e.target.value },
+                    contact: { ...prev.contact, phoneNumber: e.target.value },
                   }))
                 }
                 placeholder="Phone Number"
