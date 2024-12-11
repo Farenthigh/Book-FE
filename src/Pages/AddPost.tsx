@@ -21,10 +21,8 @@ function AddPost() {
       sevendayprice: "",
       fourteendayprice: "",
     },
-    contact: {
-      phoneNumber: "",
-      lineID: "",
-    },
+    phoneNumber: "",
+    lineID: "",
     images: [], // เก็บไฟล์รูป
   });
 
@@ -44,8 +42,8 @@ function AddPost() {
         fivedayprice: bookData.rentPrices.fivedayprice,
         sevendayprice: bookData.rentPrices.sevendayprice,
         fourteendayprice: bookData.rentPrices.fourteendayprice,
-        phoneNumber: bookData.contact.phoneNumber,
-        lineID: bookData.contact.lineID,
+        phoneNumber: bookData.phoneNumber,
+        lineID: bookData.lineID,
       });
       console.log(response);
       if (response.status === 200) {
@@ -269,26 +267,28 @@ function AddPost() {
               <input
                 type="text"
                 name="phoneNumber"
-                value={bookData.contact.phoneNumber}
-                onChange={(e) =>
-                  setBookData((prev) => ({
-                    ...prev,
-                    contact: { ...prev.contact, phoneNumber: e.target.value },
-                  }))
-                }
+                value={bookData.phoneNumber}
+                onChange={handleChange}
+                // onChange={(e) =>
+                //   setBookData((prev) => ({
+                //     ...prev,
+                //     contact: { ...prev.contact, phoneNumber: e.target.value },
+                //   }))
+                // }
                 placeholder="Phone Number"
                 className="rounded-full p-2 w-full pl-5  border-2 border-primary focus:outline-none"
               />
               <input
                 type="text"
                 name="lineID"
-                value={bookData.contact.lineID}
-                onChange={(e) =>
-                  setBookData((prev) => ({
-                    ...prev,
-                    contact: { ...prev.contact, lineID: e.target.value },
-                  }))
-                }
+                value={bookData.lineID}
+                onChange={handleChange}
+                // onChange={(e) =>
+                //   setBookData((prev) => ({
+                //     ...prev,
+                //     contact: { ...prev.contact, lineID: e.target.value },
+                //   }))
+                // }
                 placeholder="Line ID"
                 className="rounded-full p-2 w-full pl-5  border-2 border-primary focus:outline-none"
               />
