@@ -185,7 +185,8 @@ function AddPost() {
                   className="accent-purple-700"
                   value="sale"
                   checked={postType === "sale"}
-                  onChange={() => setPostType("sale")}
+                  onChange={ (e) => setPostType(e.target.value)}
+                  // onChange={() => setPostType("rent")}
                 />
                 sale
               </label>
@@ -195,7 +196,8 @@ function AddPost() {
                   className="accent-purple-700"
                   value="rent"
                   checked={postType === "rent"}
-                  onChange={() => setPostType("rent")}
+                  onChange={ (e) => setPostType(e.target.value)}
+                  // onChange={() => setPostType("sale")}
                 />
                 rent
               </label>
