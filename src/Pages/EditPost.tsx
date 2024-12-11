@@ -26,7 +26,7 @@ function EditPost() {
     images: [], // เก็บไฟล์รูป
   });
 
-  const [postType, setPostType] = useState("sale,rent"); // "sell" หรือ "rent"
+  const [postType, setPostType] = useState<"sale" | "rent">("sale"); // "sell" หรือ "rent"
 
   // จำลองการดึงข้อมูลจาก API (สมมติ bookId ใช้ดึงข้อมูลหนังสือ)
   useEffect(() => {
