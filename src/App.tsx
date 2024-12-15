@@ -23,6 +23,13 @@ import {
   SIGNUP_ROUTE,
   TEST_ROUTE,
   USER_HOME_ROUTE,
+  DISCOUNT_ROUTE,
+  PROMOTION_ROUTE,
+  Booklover_ROUTE,
+  HOWTOBUY_ROUTE,
+  HOWTORENT_ROUTE,
+  HOWTORETURN_ROUTE,
+  PAYMENTMETHOD_ROUTE,
 } from "./context/Route";
 import { axiosInstance } from "./helper/axiosInstance";
 import Homepage from "./Pages/Homepage";
@@ -44,6 +51,13 @@ import Profile from "./Pages/Profile";
 import Signup from "./Pages/Signup";
 import Test from "./Pages/Test";
 import Post from "./Pages/Post";
+import Discount from "./components/Banner/Discount";
+import Promotion from "./components/Banner/Promotion";
+import Booklover from "./components/Banner/Booklover";
+import HowtoBuy from "./components/HomeIcon/HowtoBuy";
+import HowtoRent from "./components/HomeIcon/HowtoRent";
+import HowtoReturn from "./components/HomeIcon/HowtoReturn";
+import PaymentMethod from "./components/HomeIcon/PaymentMethod";
 
 
 function App() {
@@ -100,6 +114,13 @@ function App() {
               <Route path={AUTHORS_ROUTE} element={<AuthorPage />} />
               <Route path={PUBLICHER_ROUTE} element={<Publishers />} />
               <Route path={CONTACTS_ROUTE} element={<Contacts />} />
+              <Route path={DISCOUNT_ROUTE} element={<Discount />} />
+              <Route path={PROMOTION_ROUTE} element={<Promotion />} />
+              <Route path={Booklover_ROUTE} element={<Booklover />} />
+              <Route path={HOWTOBUY_ROUTE} element={<HowtoBuy />} />
+              <Route path={HOWTORENT_ROUTE} element={<HowtoRent />} />
+              <Route path={HOWTORETURN_ROUTE} element={<HowtoReturn />} />
+              <Route path={PAYMENTMETHOD_ROUTE} element={<PaymentMethod />} />
             </Route>
             <Route path={LOGIN_ROUTE} element={<Login></Login>}></Route>
             <Route path={SIGNUP_ROUTE} element={<Signup></Signup>}></Route>

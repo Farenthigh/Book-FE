@@ -1,25 +1,31 @@
+import { Link } from "react-router-dom";
 import Rent from "../../assets/Rent.png";
 import Buy from "../../assets/Buy.png";
 import Return from "../../assets/Return.png";
 import PaymentMet from "../../assets/PaymentMet.png";
 
+
 const Icon = () => {
   const topIcons = [
     {
       src: Buy,
-      label: "HOW TO BUY"
+      label: "HOW TO BUY",
+      link: "/how-to-buy" 
     },
     {
       src: Rent,
       label: "HOW TO RENT",
+      link: "/how-to-rent"
     },
     {
       src: Return,
       label: "HOW TO RETURN",
+      link: "/how-to-return"
     },
     {
       src: PaymentMet,
       label: "PAYMENT METHOD",
+      link: "/payment-method"
     },
   ];
 
@@ -27,7 +33,7 @@ const Icon = () => {
     <div className="p-5 font-serif font-xl font-bold bg-[#f9f9ff] text-center text-gray-800 px-24 py-8">
       <div className="flex justify-around gap-10">
         {topIcons.map((icon, index) => (
-          <div key={index} className="text-center text-sm">
+          <Link to={icon.link} key={index} className="text-center text-sm">
             <div className="w-40 h-40 mx-auto rounded-full border shadow-md flex items-center justify-center hover:scale-110 hover:bg-primarycontainer">
               <img
                 src={icon.src}
@@ -36,7 +42,7 @@ const Icon = () => {
               />
             </div>
             <p className="mt-2">{icon.label}</p>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

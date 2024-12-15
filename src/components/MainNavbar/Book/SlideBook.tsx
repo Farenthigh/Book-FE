@@ -75,7 +75,7 @@ function SlideBook({ setSelectedBooks }) {
             <input
               type="checkbox"
               id={`all-${category}`}
-              className="mr-2"
+              className="mr-2 accent-primary"
               checked={books
                 .map((book) => book.title)
                 .every((title) => selectedItems.includes(title))}
@@ -95,7 +95,7 @@ function SlideBook({ setSelectedBooks }) {
                 <input
                   type="checkbox"
                   id={`book-${index}-${bookIndex}`}
-                  className="mr-2"
+                  className="mr-2 accent-primary"
                   checked={selectedItems.includes(book.title)}
                   onChange={() => handleItemCheckboxChange(book.title)}
                 />

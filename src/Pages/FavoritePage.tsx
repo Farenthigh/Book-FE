@@ -4,8 +4,6 @@ import Footer from "../components/Footer/Footer";
 
 
 const FavoritePage = () => {
-
-
   return (
     <div>
     <div className=" bg-[#f9f9ff] text-gray-800 px-24 py-8">

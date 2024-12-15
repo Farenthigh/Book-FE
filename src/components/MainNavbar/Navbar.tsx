@@ -12,6 +12,7 @@ import { axiosInstance } from "../../helper/axiosInstance";
 import ResponsiveMenu from "./ResponsiveMenu";
 import { FAV_ROUTE } from "../../context/Route";
 import { CART_ROUTE } from "../../context/Route";
+import { CONTACTS_ROUTE } from "../../context/Route";
 
 const Navbar = () => {
   const auth = useContext(AuthContext);
@@ -70,7 +71,7 @@ const Navbar = () => {
 
   const handleNavItemClick = (link) => {
     
-    if (link === "/" || link === "/contract") {
+    if (link === "/" || link === (CONTACTS_ROUTE)) {
       navigate(link);
     } else {
       if (!auth?.auth.isAuth) {
