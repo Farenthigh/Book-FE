@@ -1,14 +1,39 @@
-import { useState } from "react";
-import { MdKeyboardDoubleArrowRight, MdKeyboardDoubleArrowLeft } from "react-icons/md";
+import { useEffect, useState } from "react";
+import {
+  MdKeyboardDoubleArrowRight,
+  MdKeyboardDoubleArrowLeft,
+} from "react-icons/md";
 import { Link } from "react-router-dom";
-import {S_DETAIL_ROUTE} from "../../context/Route";
+import { S_DETAIL_ROUTE } from "../../context/Route";
 import Book from "../Mockdata/Book.json";
 import Heart from "../Catagories/Heart";
+import { axiosInstance } from "../../helper/axiosInstance";
 
 function AllSaleCategory({ selectedCategory }) {
   const booksPerPage = 12;
-  const filteredBooks = Book.filter(book => book.category === selectedCategory); 
+  const filteredBooks = Book.filter(
+    (book) => book.category === selectedCategory
+  );
   const totalPages = Math.ceil(filteredBooks.length / booksPerPage);
+  const [salebook, setSalebooks] = useState<[]>([]);
+  const fetchsalebooks = async () => {
+    try {
+      const response = await axiosInstance.get("/book/getsalebook");
+      const data = response.data.filter(
+        (book) => book.book_category === selectedCategory
+      );
+      if (response.status === 200) {
+        setSalebooks(data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchsalebooks();
+    console.log("sale book ", salebook);
+  }, [selectedCategory]);
 
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -38,29 +63,38 @@ function AllSaleCategory({ selectedCategory }) {
     <div className="flex-grow p-2">
       <div className="flex items-center justify-between mt-8 mb-4">
         <div className="flex-grow border-t-2 h-0.5 border-purple-200"></div>
-        <h2 className="text-3xl font-cherry text-center mx-4">{selectedCategory.toUpperCase()}</h2>
+        <h2 className="text-3xl font-cherry text-center mx-4">
+          {selectedCategory.toUpperCase()}
+        </h2>
         <div className="flex-grow border-t-2 h-0.5 border-purple-200"></div>
         <p className="ml-4 text-gray-700 text-sm">
           Showing {startItem}-{endItem} of {filteredBooks.length} results
         </p>
       </div>
 
-      
-
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {paginatedBooks.map((book, index) => (
+        {salebook.map((book, index) => (
           <div
             key={index}
             className="border rounded-lg p-2 text-center relative w-72 shadow-md"
           >
-            <img src={book.images[0]} alt={book.title} className="w-full h-48 object-contain rounded-md mb-2" />
+            {/* <img
+              src={book.images[0]}
+              alt={book.title}
+              className="w-full h-48 object-contain rounded-md mb-2"
+            /> */}
             <h3 className="text-sm font-cherry">{book.title}</h3>
-            <p className="text-sm text-gray-500 mb-2">{book.author}</p>
-            <p className="p-4 text-left text-lg text-gray-700 font-bold ">{book.price} THB</p>
+            <p className="text-sm text-gray-500 mb-2">{book.author_name}</p>
+            <p className="p-4 text-left text-lg text-gray-700 font-bold ">
+              {book.salebook_price} THB
+            </p>
             <div className="absolute top-2 right-2 flex items-center justify-center bg-gray-300 rounded-full w-8 h-8">
-             <Heart />
+              <Heart />
             </div>
-            <Link to={S_DETAIL_ROUTE} className="mt-2 mb-2 px-4 py-1 bg-primary font-cherry text-white rounded-full hover:bg-purple-600 transition">
+            <Link
+              to={S_DETAIL_ROUTE}
+              className="mt-2 mb-2 px-4 py-1 bg-primary font-cherry text-white rounded-full hover:bg-purple-600 transition"
+            >
               Show details
             </Link>
           </div>
@@ -81,7 +115,9 @@ function AllSaleCategory({ selectedCategory }) {
               key={index + 1}
               onClick={() => goToPage(index + 1)}
               className={`w-8 h-8 rounded-full ${
-                currentPage === index + 1 ? "bg-primary text-white" : "bg-white text-gray-700 hover:bg-gray-300"
+                currentPage === index + 1
+                  ? "bg-primary text-white"
+                  : "bg-white text-gray-700 hover:bg-gray-300"
               }`}
             >
               {index + 1}

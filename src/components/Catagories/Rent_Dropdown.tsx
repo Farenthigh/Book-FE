@@ -1,7 +1,7 @@
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { CiSearch } from "react-icons/ci";
 import { useState } from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { R_DETAIL_ROUTE } from "../../context/Route";
 import data from "../Mockdata/Book.json"; // Import the JSON file here
 
@@ -19,11 +19,12 @@ function Slidebar({ setSelectedCategory }) {
   }, {});
 
   // Filter categories and items based on the search term
-  const filteredCategories = Object.keys(groupedData).filter((category) =>
-    category.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    groupedData[category].some((item) =>
-      item.title.toLowerCase().includes(searchTerm.toLowerCase())
-    )
+  const filteredCategories = Object.keys(groupedData).filter(
+    (category) =>
+      category.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      groupedData[category].some((item) =>
+        item.title.toLowerCase().includes(searchTerm.toLowerCase())
+      )
   );
 
   const handleToggle = (category) => {
@@ -63,7 +64,6 @@ function Slidebar({ setSelectedCategory }) {
               <IoIosArrowDown className="h-5 w-5 text-gray-700" />
             )}
           </button>
-
           {/* Subcategories and Items */}
           {openCategories.includes(category) && (
             <div className="border-t border-gray-300 mt-2 pt-2">
@@ -81,9 +81,7 @@ function Slidebar({ setSelectedCategory }) {
                   key={item.id}
                   className="py-1 pl-8 font-serif text-sm text-gray-700 hover:text-purple-600"
                 >
-                  <Link to= { R_DETAIL_ROUTE } >
-                    {item.title}
-                  </Link>
+                  <Link to={R_DETAIL_ROUTE}>{item.title}</Link>
                 </div>
               ))}
             </div>
@@ -95,4 +93,3 @@ function Slidebar({ setSelectedCategory }) {
 }
 
 export default Slidebar;
-

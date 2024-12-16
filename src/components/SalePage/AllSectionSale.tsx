@@ -1,24 +1,40 @@
-import { useState } from 'react';
-import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
+import { useEffect, useState } from "react";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { Link } from "react-router-dom";
-import {S_DETAIL_ROUTE} from "../../context/Route";
-import Heart from '../Catagories/Heart';
+import { S_DETAIL_ROUTE } from "../../context/Route";
+import Heart from "../Catagories/Heart";
 import Book from "../Mockdata/Book.json";
+import { axiosInstance } from "../../helper/axiosInstance";
 
 function AllSectionSale() {
+  const [visibleBooks, setVisibleBooks] = useState(6);
+  const [isExpanded, setIsExpanded] = useState(false);
 
+  const [salebook, setSalebooks] = useState<[]>([]);
+  const fetchsalebooks = async () => {
+    try {
+      const response = await axiosInstance.get("/book/getsalebook");
+      console.log(response.data);
+      if (response.status === 200) {
+        setSalebooks(response.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  const [visibleBooks, setVisibleBooks] = useState(3); 
-  const [isExpanded, setIsExpanded] = useState(false); 
+  useEffect(() => {
+    fetchsalebooks();
+    console.log("sale book ", salebook);
+  }, []);
 
- 
   const loadMoreBooks = () => {
     if (!isExpanded) {
-      setVisibleBooks(Book.length); 
+      setVisibleBooks(Book.length);
     } else {
-      setVisibleBooks(3); 
+      setVisibleBooks(6);
     }
-    setIsExpanded(!isExpanded); 
+    setIsExpanded(!isExpanded);
   };
 
   return (
@@ -29,34 +45,42 @@ function AllSectionSale() {
           href="#"
           onClick={(e) => {
             e.preventDefault();
-            loadMoreBooks(); 
+            loadMoreBooks();
           }}
           className="flex items-center font-serif text-lg"
         >
-          More 
+          More
           {isExpanded ? (
-            <IoIosArrowUp className="ml-2 h-5 w-5" /> 
+            <IoIosArrowUp className="ml-2 h-5 w-5" />
           ) : (
-            <IoIosArrowDown className="ml-2 h-5 w-5" /> 
+            <IoIosArrowDown className="ml-2 h-5 w-5" />
           )}
         </a>
       </div>
 
-      
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {Book.slice(0, visibleBooks).map((book, index) => (
+        {salebook.slice(0, visibleBooks).map((book, index) => (
           <div
             key={index}
             className="border rounded-lg p-2 text-center relative w-72 shadow-md"
           >
-            <img src={book.images[0]} alt={book.title} className="w-full h-48 object-contain rounded-md mb-2" />
+            {/* <img
+              src={book.images[0]}
+              alt={book.title}
+              className="w-full h-48 object-contain rounded-md mb-2"
+            /> */}
             <h3 className="text-sm font-cherry">{book.title}</h3>
-            <p className="text-sm text-gray-500 mb-2">{book.author}</p>
-            <p className="p-4 text-left text-lg text-gray-700 font-bold ">{book.price} THB</p>
+            <p className="text-sm text-gray-500 mb-2">{book.author_name}</p>
+            <p className="p-4 text-left text-lg text-gray-700 font-bold ">
+              {book.salebook_price} THB
+            </p>
             <div className="absolute top-2 right-2 flex items-center justify-center bg-gray-300 rounded-full w-8 h-8">
-              < Heart/>
+              <Heart />
             </div>
-            <Link to={S_DETAIL_ROUTE} className="mt-2 mb-2 px-4 py-1 bg-primary font-cherry text-white rounded-full hover:bg-purple-600 transition">
+            <Link
+              to={S_DETAIL_ROUTE}
+              className="mt-2 mb-2 px-4 py-1 bg-primary font-cherry text-white rounded-full hover:bg-purple-600 transition"
+            >
               Show details
             </Link>
           </div>

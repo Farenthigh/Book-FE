@@ -1,5 +1,5 @@
 import { useState } from "react";
-import data from "../../Mockdata/Book.json";
+// import data from "../../Mockdata/Book.json";
 import Heart from "../../Catagories/Heart";
 
 function AllBooks({ selectedBooks }) {
@@ -50,7 +50,9 @@ function AllBooks({ selectedBooks }) {
                   {book.status}
                 </p>
               ) : (
-                <p className="p-4 text-left text-lg text-gray-700 font-bold">{book.price} THB</p>
+                <p className="p-4 text-left text-lg text-gray-700 font-bold">
+                  {book.price} THB
+                </p>
               )}
               <div className="absolute top-2 right-2 flex items-center justify-center bg-gray-300 rounded-full w-8 h-8">
                 <Heart />
