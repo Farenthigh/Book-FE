@@ -1,10 +1,10 @@
 import { CiSearch } from "react-icons/ci";
 import { useState } from "react";
-import data from "../../Mockdata/Book.json"; 
+import data from "../../Mockdata/Book.json";
 
 function SlidePub({ setSelectedPublisher, setFilteredBooks }) {
-  const [searchTerm, setSearchTerm] = useState(""); 
-  const [selectedItems, setSelectedItems] = useState([]); 
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedItems, setSelectedItems] = useState([]);
 
   const groupedData = data.reduce((acc, item) => {
     const publisher = item.publisher.toLowerCase();
@@ -31,19 +31,20 @@ function SlidePub({ setSelectedPublisher, setFilteredBooks }) {
         ? prevSelectedItems.filter((item) => item !== publisher)
         : [...prevSelectedItems, publisher];
 
-      setSelectedPublisher(updatedSelectedItems); 
-      setFilteredBooks(updatedSelectedItems.length === 0
-        ? [] 
-        : Object.values(groupedData)
-            .filter((group) => updatedSelectedItems.includes(group.publisher))
-            .flatMap((group) => group.books)
+      setSelectedPublisher(updatedSelectedItems);
+      setFilteredBooks(
+        updatedSelectedItems.length === 0
+          ? []
+          : Object.values(groupedData)
+              .filter((group) => updatedSelectedItems.includes(group.publisher))
+              .flatMap((group) => group.books)
       );
       return updatedSelectedItems;
     });
   };
 
   return (
-    <div className="w-64 p-4 bg-white rounded-lg shadow-md">
+    <div className="w-full sm:w-64 p-4 bg-white rounded-lg shadow-md">
       <div className="mb-6 relative">
         <CiSearch className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-500" />
         <input

@@ -2,7 +2,7 @@ import { useState } from "react";
 import Heart from "../../Catagories/Heart";
 
 function PubBooks({ filteredBooks }) {
-  const [activeTab, setActiveTab] = useState("SALE"); 
+  const [activeTab, setActiveTab] = useState("SALE");
 
   return (
     <div>
@@ -26,12 +26,12 @@ function PubBooks({ filteredBooks }) {
       </div>
       <div className="border-b-2 border-primary w-full my-2"></div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 px-4">
         {filteredBooks.length > 0 ? (
           filteredBooks.map((book) => (
             <div
               key={book.id}
-              className="border rounded-lg p-2 text-center relative w-72 shadow-md"
+              className="border rounded-lg p-4 text-center relative shadow-md"
             >
               <img
                 src={book.images[0]}

@@ -1,4 +1,3 @@
-
 import React, { useContext, useRef, useState } from "react";
 import { FaRegHeart } from "react-icons/fa";
 import { FiShoppingCart } from "react-icons/fi";
@@ -19,7 +18,7 @@ const Navbar = () => {
   const navigate = useNavigate(); 
   const [opens, setOpens] = useState(false);
   const [open, setOpen] = useState(false);
-  const Menus = ["Profile", "Allpost", "Addpost", "Logout"];
+  const Menus = ["Profile","Orders", "Allpost", "Addpost", "Logout"];
   const menuRef = useRef();
   const buttRef = useRef();
 
@@ -46,6 +45,9 @@ const Navbar = () => {
     switch (item) {
       case "Profile":
         navigate("/profile");
+        break;
+      case "Orders":
+        navigate("/orders");
         break;
       case "Allpost":
         navigate("/allpost");
@@ -124,13 +126,16 @@ const Navbar = () => {
           </div>
 
           {/* Icon Section */}
-          <div className="flex items-center gap-4">
-            <button className="text-2xl" onClick={() => handleIconClick(FAV_ROUTE)}>
-              <FaRegHeart />
-            </button>
-            <button className="text-2xl" onClick={() => handleIconClick(CART_ROUTE)}>
-              <FiShoppingCart />
-            </button>
+          <div className=" flex items-center gap-4">
+            <div className="hidden md:flex space-x-2">
+              <button className="text-2xl" onClick={() => handleIconClick(FAV_ROUTE)}>
+                <FaRegHeart />
+              </button>
+              <button className="text-2xl" onClick={() => handleIconClick(CART_ROUTE)}>
+                <FiShoppingCart />
+              </button>
+            </div>
+      
             {auth?.auth.isAuth ? (
               <div className="relative">
                 <button

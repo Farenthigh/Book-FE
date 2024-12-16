@@ -1,53 +1,21 @@
+import HowToBuy from "../../assets/HowToBuy.png";
 
-import Salebutton from "../../assets/Salebutton.png";
-import DetailSale from "../../assets/DetailSale.png";
-import Salebook from "../../assets/Salebook.png";
-import Checkout from "../../assets/Checkout.png";
-import Payment from "../../assets/Payment.png";
 
-const HowtoBuy = () => {
-  const topHowtoBuys = [
-    {
-      src: Salebutton,
-      label: "HOW TO BUY"
-    },
-    {
-      src: Salebook,
-      label: "HOW TO RENT",
-    },
-    {
-      src: DetailSale,
-      label: "HOW TO RETURN",
-    },
-    {
-      src: Checkout,
-      label: "ORDER DETAIL",
-    },
-    {
-      src: Payment,
-      label: "ORDER DETAIL",
-    },
-  ];
+function HowtoBuy() {
+  
 
   return (
-    <div className="p-5 font-serif font-xl font-bold bg-[#f9f9ff] text-center text-gray-800 px-24 py-8">
-      <h1 className="mb-10">HOW TO BUY</h1>
-      <div className="flex justify-around gap-10">
-        {topHowtoBuys.map((icon, index) => (
-          <div key={index} className="text-center text-sm">
-            <div className="w-60 h-60 mx-auto rounded-full bg-primarycontainer border shadow-md flex items-center justify-center ">
-              <img
-                src={icon.src}
-                alt={icon.label}
-                className="w-20 h-20 object-contain transform transition-transform duration-200 "
-              />
-            </div>
-            <p className="mt-2">{icon.label}</p>
-          </div>
-        ))}
+    <div className="flex justify-center items-center bg-[#f9f9ff] px-32 py-10">
+      <div className="w-full bg-white shadow-lg rounded-lg p-5 mb-20">
+        <div className="flex items-center justify-between mt-8 mb-10">
+          <div className="flex-grow border-t-2 h-0.5 border-purple-200"></div>
+          <h2 className="text-3xl font-cherry text-center mx-4">วิธีการสั่งซื้อหนังสือ</h2>
+          <div className="flex-grow border-t-2 h-0.5 border-purple-200"></div>
+        </div>
+        <img src={HowToBuy} className=" w-full h-full mb-2 rounded-3xl" /> 
       </div>
     </div>
   );
-};
+}
 
 export default HowtoBuy;

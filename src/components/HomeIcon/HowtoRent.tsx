@@ -1,57 +1,23 @@
-import Rentbutton from "../../assets/Rentbutton.png";
-import Rentbook from "../../assets/Rentbooke.png";
-import DetailRent1 from "../../assets/DetailRent1.png";
-import DetailRent2 from "../../assets/DetailRent2.png";
-import Checkout from "../../assets/Checkout.png";
-import Payment from "../../assets/Payment.png";
+import HowToRent1 from "../../assets/HowToRent1.png";
+import HowToRent2 from "../../assets/HowToRent2.png";
 
-const HowtoRent = () => {
-  const topHowtoRents = [
-    {
-      src: Rentbutton,
-      label: "HOW TO BUY"
-    },
-    {
-      src: Rentbook,
-      label: "HOW TO RENT",
-    },
-    {
-      src: DetailRent1,
-      label: "HOW TO RETURN",
-    },
-    {
-      src: DetailRent2,
-      label: "HOW TO RETURN",
-    },
-    {
-      src: Checkout,
-      label: "ORDER DETAIL",
-    },
-    {
-      src: Payment,
-      label: "ORDER DETAIL",
-    },
-  ];
-
+function HowtoRent() {
+  
   return (
-    <div className="p-5 font-serif font-xl font-bold bg-[#f9f9ff] text-center text-gray-800 px-24 py-8">
-      <h1 className="mb-10">HOW TO RENT</h1>
-      <div className="flex justify-around gap-10">
-        {topHowtoRents.map((icon, index) => (
-          <div key={index} className="text-center text-sm">
-            <div className="w-60 h-60 mx-auto rounded-full bg-primarycontainer border shadow-md flex items-center justify-center ">
-              <img
-                src={icon.src}
-                alt={icon.label}
-                className="w-20 h-20 object-contain transform transition-transform duration-200 "
-              />
-            </div>
-            <p className="mt-2">{icon.label}</p>
-          </div>
-        ))}
+    <div className="flex justify-center items-center bg-[#f9f9ff] px-32 py-10">
+      <div className="w-full bg-white shadow-lg rounded-lg p-5">
+        <div className="flex items-center justify-between mt-8 mb-10">
+          <div className="flex-grow border-t-2 h-0.5 border-purple-200"></div>
+          <h2 className="text-3xl font-cherry text-center mx-4">วิธีการเช่าหนังสือ</h2>
+          <div className="flex-grow border-t-2 h-0.5 border-purple-200"></div>
+        </div>
+        <div className="w-full h-full ">
+          <img src={HowToRent1} className="rounded-t-3xl" /> 
+          <img src={HowToRent2} className="rounded-b-3xl" /> 
+        </div>
       </div>
     </div>
   );
-};
+}
 
 export default HowtoRent;

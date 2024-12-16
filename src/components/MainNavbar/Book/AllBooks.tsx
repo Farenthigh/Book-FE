@@ -32,7 +32,7 @@ function AllBooks({ selectedBooks }) {
           .map((book) => (
             <div
               key={book.id}
-              className="border rounded-lg p-2 text-center relative w-72 shadow-md"
+              className="border rounded-lg p-4 text-center relative shadow-md"
             >
               <img
                 src={book.images[0]}

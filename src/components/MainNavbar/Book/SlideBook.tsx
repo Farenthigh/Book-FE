@@ -12,7 +12,6 @@ function SlideBook({ setSelectedBooks }) {
     return acc;
   }, {});
 
- 
   const handleItemCheckboxChange = (name) => {
     setSelectedItems((prevSelectedItems) => {
       const isAlreadySelected = prevSelectedItems.includes(name);
@@ -20,7 +19,7 @@ function SlideBook({ setSelectedBooks }) {
         ? prevSelectedItems.filter((item) => item !== name)
         : [...prevSelectedItems, name];
 
-      setSelectedBooks(updatedSelectedItems); 
+      setSelectedBooks(updatedSelectedItems);
       return updatedSelectedItems;
     });
   };
@@ -32,8 +31,8 @@ function SlideBook({ setSelectedBooks }) {
     );
 
     const updatedItems = allSelected
-      ? selectedItems.filter((item) => !allBookTitles.includes(item)) 
-      : [...new Set([...selectedItems, ...allBookTitles])]; 
+      ? selectedItems.filter((item) => !allBookTitles.includes(item))
+      : [...new Set([...selectedItems, ...allBookTitles])];
 
     setSelectedItems(updatedItems);
     setSelectedBooks(updatedItems);
@@ -56,7 +55,7 @@ function SlideBook({ setSelectedBooks }) {
   );
 
   return (
-    <div className="w-64 p-4 bg-white rounded-lg shadow-md">
+    <div className="w-full sm:w-64 p-4 bg-white rounded-lg shadow-md">
       <div className="mb-6 relative">
         <CiSearch className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-500" />
         <input
@@ -116,4 +115,3 @@ function SlideBook({ setSelectedBooks }) {
 }
 
 export default SlideBook;
-

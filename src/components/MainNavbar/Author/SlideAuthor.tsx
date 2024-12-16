@@ -1,6 +1,6 @@
 import { CiSearch } from "react-icons/ci";
 import { useState } from "react";
-import data from "../../Mockdata/Book.json"; 
+import data from "../../Mockdata/Book.json";
 
 function SlideAuthor({ setSelectedAuthor }) {
   const [searchTerm, setSearchTerm] = useState("");
@@ -19,14 +19,13 @@ function SlideAuthor({ setSelectedAuthor }) {
         ? prevSelectedItems.filter((item) => item !== author)
         : [...prevSelectedItems, author];
 
-      setSelectedAuthor(updatedSelectedItems); 
+      setSelectedAuthor(updatedSelectedItems);
       return updatedSelectedItems;
     });
   };
 
   return (
-    <div className="w-64 p-4 bg-white rounded-lg shadow-md">
-      {/* ช่องค้นหา */}
+    <div className="w-full sm:w-64 p-4 bg-white rounded-lg shadow-md">
       <div className="mb-6 relative">
         <CiSearch className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-500" />
         <input

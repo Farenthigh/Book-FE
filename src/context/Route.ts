@@ -7,6 +7,7 @@ export const S_DETAIL_ROUTE = "/Sdetail";
 export const R_DETAIL_ROUTE = "/Rdetail";
 export const FAV_ROUTE = "/fav";
 export const PROFILE_ROUTE = "/profile";
+export const ORDERS_ROUTE = "/orders";
 export const ALLPOST_ROUTE = "/allPost";
 export const ADDPOST_ROUTE = "/addPost";
 export const EDITPOST_ROUTE = "/editPost/:bookId";

@@ -7,7 +7,7 @@ function AuthorBooks({ selectedAuthors }) {
 
   return (
     <div>
-      <div className="flex justify-between items-center px-4 py-2 ">
+      <div className="flex justify-between items-center px-4 py-2">
         <button
           onClick={() => setActiveTab("SALE")}
           className={`text-lg font-cherry ${
@@ -33,7 +33,7 @@ function AuthorBooks({ selectedAuthors }) {
           .map((book) => (
             <div
               key={book.id}
-              className="border rounded-lg p-2 text-center relative w-72 shadow-md"
+              className="border rounded-lg p-4 text-center relative shadow-md"
             >
               <img
                 src={book.images[0]}
@@ -63,8 +63,7 @@ function AuthorBooks({ selectedAuthors }) {
               </button>
             </div>
           ))}
-        {data.filter((book) => selectedAuthors.includes(book.author)).length ===
-          0 && (
+        {data.filter((book) => selectedAuthors.includes(book.author)).length === 0 && (
           <p className="col-span-full text-center text-gray-500">
             No books found for the selected author.
           </p>

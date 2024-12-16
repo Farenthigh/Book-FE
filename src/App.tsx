@@ -10,11 +10,11 @@ import {
   CONTACTS_ROUTE,
   EDITPOST_ROUTE,
   ALLPOST_ROUTE,
-  // CART_ROUTE,
   // DETAIL_ROUTE,
   FAV_ROUTE,
   LOGIN_ROUTE,
   PROFILE_ROUTE,
+  ORDERS_ROUTE,
   PUBLICHER_ROUTE,
   R_DETAIL_ROUTE,
   RENT_ROUTE,
@@ -40,7 +40,6 @@ import RentPage from "./Pages/RentPage";
 import DetailRentPage from "./Pages/DetailRentPage";
 import DetailSalePage from "./Pages/DetailSalePage";
 import FavoritePage from "./Pages/FavoritePage";
-// import ResponsiveMenu from "./components/MainNavbar/ResponsiveMenu";
 import AuthorPage from "./components/MainNavbar/Author/Authores";
 import Books from "./components/MainNavbar/Book/Books";
 import Contacts from "./components/MainNavbar/Contacts";
@@ -48,6 +47,7 @@ import Publishers from "./components/MainNavbar/Publish/Publishers";
 import AddPost from "./Pages/AddPost";
 import EditPost from "./Pages/EditPost";
 import Profile from "./Pages/Profile";
+import Orders from "./components/MainNavbar/Orders";
 import Signup from "./Pages/Signup";
 import Test from "./Pages/Test";
 import Post from "./Pages/Post";
@@ -107,6 +107,7 @@ function App() {
               <Route path={R_DETAIL_ROUTE} element={<DetailRentPage />} />
               <Route path={FAV_ROUTE} element={<FavoritePage />} />
               <Route path={PROFILE_ROUTE} element={<Profile />} />
+              <Route path={ORDERS_ROUTE} element={<Orders />} />
               <Route path={ALLPOST_ROUTE} element={<Post />} />
               <Route path={ADDPOST_ROUTE} element={<AddPost />} />
               <Route path={EDITPOST_ROUTE} element={<EditPost />} />

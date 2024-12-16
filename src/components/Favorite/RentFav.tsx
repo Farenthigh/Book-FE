@@ -40,8 +40,8 @@ function RentFav() {
                 className="border rounded-lg p-4 text-center relative w-72 shadow-md"
               >
                 <img src={book.images[0]} alt={book.title} className=" w-full h-48 object-contain rounded-md mb-2" /> 
-                <h3 className="text-sm font-cherry font-bold">{book.title}</h3>
-                <p className="text-sm text-gray-500 mb-2">{book.author}</p>
+                <h3 className="text-sm sm:text-base font-cherry font-bold">{book.title}</h3>
+                <p className="text-xs sm:text-sm text-gray-500 mb-2">{book.author}</p>
                 <p className={`p-4 text-right text-lg font-bold ${book.status === 'Rented' ? 'text-rented' : 'text-available'}`}>
                   {book.status}
                 </p>
