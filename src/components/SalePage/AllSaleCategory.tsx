@@ -67,9 +67,9 @@ function AllSaleCategory({ selectedCategory }) {
           {selectedCategory.toUpperCase()}
         </h2>
         <div className="flex-grow border-t-2 h-0.5 border-purple-200"></div>
-        <p className="ml-4 text-gray-700 text-sm">
+        {/* <p className="ml-4 text-gray-700 text-sm">
           Showing {startItem}-{endItem} of {filteredBooks.length} results
-        </p>
+        </p> */}
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
