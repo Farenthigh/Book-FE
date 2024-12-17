@@ -1,13 +1,8 @@
 import { useEffect, useState } from "react";
-import {
-  MdKeyboardDoubleArrowRight,
-  MdKeyboardDoubleArrowLeft,
-} from "react-icons/md";
 import { Link } from "react-router-dom";
-import { S_DETAIL_ROUTE } from "../../context/Route";
-import Book from "../Mockdata/Book.json";
-import Heart from "../Catagories/Heart";
 import { axiosInstance } from "../../helper/axiosInstance";
+import Heart from "../Catagories/Heart";
+import Book from "../Mockdata/Book.json";
 
 function AllSaleCategory({ selectedCategory }) {
   const booksPerPage = 12;
@@ -19,11 +14,14 @@ function AllSaleCategory({ selectedCategory }) {
   const fetchsalebooks = async () => {
     try {
       const response = await axiosInstance.get("/book/getsalebook");
+      console.log(response.data);
+
       const data = response.data.filter(
         (book) => book.book_category === selectedCategory
       );
       if (response.status === 200) {
         setSalebooks(data);
+        console.log("sale book ", data);
       }
     } catch (error) {
       console.log(error);
@@ -83,7 +81,7 @@ function AllSaleCategory({ selectedCategory }) {
               alt={book.title}
               className="w-full h-48 object-contain rounded-md mb-2"
             /> */}
-            <h3 className="text-sm font-cherry">{book.title}</h3>
+            <h3 className="text-sm font-cherry">{book.book_title}</h3>
             <p className="text-sm text-gray-500 mb-2">{book.author_name}</p>
             <p className="p-4 text-left text-lg text-gray-700 font-bold ">
               {book.salebook_price} THB
@@ -92,7 +90,7 @@ function AllSaleCategory({ selectedCategory }) {
               <Heart />
             </div>
             <Link
-              to={S_DETAIL_ROUTE}
+              to={`/Sdetail/${book.book_id}`}
               className="mt-2 mb-2 px-4 py-1 bg-primary font-cherry text-white rounded-full hover:bg-purple-600 transition"
             >
               Show details
@@ -101,7 +99,7 @@ function AllSaleCategory({ selectedCategory }) {
         ))}
       </div>
 
-      {totalPages > 1 && (
+      {/* {totalPages > 1 && (
         <div className="flex justify-center items-center mt-6 space-x-2">
           <button
             onClick={handlePreviousPage}
@@ -131,7 +129,7 @@ function AllSaleCategory({ selectedCategory }) {
             <MdKeyboardDoubleArrowRight size={24} />
           </button>
         </div>
-      )}
+      )} */}
     </div>
   );
 }

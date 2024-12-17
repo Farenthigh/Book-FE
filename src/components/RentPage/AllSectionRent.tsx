@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { Link } from "react-router-dom";
-import { R_DETAIL_ROUTE } from "../../context/Route";
 import { axiosInstance } from "../../helper/axiosInstance";
 import Heart from "../Catagories/Heart";
 
@@ -81,7 +80,7 @@ function AllSectionRent() {
               <Heart />
             </div>
             <Link
-              to={R_DETAIL_ROUTE}
+              to={`/Rdetail/${book.book_id}`}
               className="mt-2 mb-2 px-4 py-1 bg-primary font-cherry text-white rounded-full hover:bg-purple-600 transition"
             >
               Show details

@@ -3,8 +3,8 @@ export const TEST_ROUTE = "/test";
 export const LOGIN_ROUTE = "/login";
 export const SALE_ROUTE = "/sale";
 export const RENT_ROUTE = "/rent";
-export const S_DETAIL_ROUTE = "/Sdetail";
-export const R_DETAIL_ROUTE = "/Rdetail";
+export const S_DETAIL_ROUTE = "/Sdetail/:bookId";
+export const R_DETAIL_ROUTE = "/Rdetail/:bookId";
 export const FAV_ROUTE = "/fav";
 export const PROFILE_ROUTE = "/profile";
 export const ORDERS_ROUTE = "/orders";
@@ -23,6 +23,5 @@ export const HOWTOBUY_ROUTE = "/how-to-buy";
 export const HOWTORENT_ROUTE = "/how-to-rent";
 export const HOWTORETURN_ROUTE = "/how-to-return";
 export const PAYMENTMETHOD_ROUTE = "/payment-method";
-
 
 export const SIGNUP_ROUTE = "/signup";

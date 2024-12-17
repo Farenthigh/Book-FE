@@ -4,7 +4,6 @@ import {
   MdKeyboardDoubleArrowRight,
 } from "react-icons/md";
 import { Link } from "react-router-dom";
-import { R_DETAIL_ROUTE } from "../../context/Route";
 import { axiosInstance } from "../../helper/axiosInstance";
 import Heart from "../Catagories/Heart";
 import Book from "../Mockdata/Book.json";
@@ -94,6 +93,7 @@ function AllRentCategory({ selectedCategory }) {
             /> */}
             <h3 className="text-sm font-cherry">{book.book_title}</h3>
             <p className="text-sm text-gray-500 mb-2">{book.author_name}</p>
+            <div>HEllo</div>
             <p
               className={`p-4 text-right text-lg font-bold ${
                 book.status === "Rented" ? "text-rented" : "text-available"
@@ -105,7 +105,7 @@ function AllRentCategory({ selectedCategory }) {
               <Heart />
             </div>
             <Link
-              to={R_DETAIL_ROUTE}
+              to={`/Rdetail/${book.book_id}`}
               className="mt-2 mb-2 px-4 py-1 bg-primary font-cherry text-white rounded-full hover:bg-purple-600 transition"
             >
               Show details

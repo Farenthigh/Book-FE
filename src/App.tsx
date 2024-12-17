@@ -59,7 +59,6 @@ import HowtoRent from "./components/HomeIcon/HowtoRent";
 import HowtoReturn from "./components/HomeIcon/HowtoReturn";
 import PaymentMethod from "./components/HomeIcon/PaymentMethod";
 
-
 function App() {
   const [auth, setAuth] = useState<IUserData>(InitAuthValue);
 

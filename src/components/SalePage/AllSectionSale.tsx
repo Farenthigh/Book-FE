@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { Link } from "react-router-dom";
-import { S_DETAIL_ROUTE } from "../../context/Route";
-import Heart from "../Catagories/Heart";
-import Book from "../Mockdata/Book.json";
 import { axiosInstance } from "../../helper/axiosInstance";
+import Heart from "../Catagories/Heart";
 
 function AllSectionSale() {
   const [visibleBooks, setVisibleBooks] = useState(6);
@@ -14,7 +12,6 @@ function AllSectionSale() {
   const fetchsalebooks = async () => {
     try {
       const response = await axiosInstance.get("/book/getsalebook");
-      console.log(response.data);
       if (response.status === 200) {
         setSalebooks(response.data);
       }
@@ -29,22 +26,21 @@ function AllSectionSale() {
   }, []);
 
   const loadMoreBooks = () => {
+    setIsExpanded(!isExpanded);
+
     if (!isExpanded) {
-      setVisibleBooks(Book.length);
+      setVisibleBooks(salebook.length);
     } else {
       setVisibleBooks(6);
     }
-    setIsExpanded(!isExpanded);
   };
 
   return (
     <section>
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-3xl font-cherry">All Book</h2>
-        <a
-          href="#"
-          onClick={(e) => {
-            e.preventDefault();
+        <button
+          onClick={() => {
             loadMoreBooks();
           }}
           className="flex items-center font-serif text-lg"
@@ -55,7 +51,7 @@ function AllSectionSale() {
           ) : (
             <IoIosArrowDown className="ml-2 h-5 w-5" />
           )}
-        </a>
+        </button>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -69,7 +65,7 @@ function AllSectionSale() {
               alt={book.title}
               className="w-full h-48 object-contain rounded-md mb-2"
             /> */}
-            <h3 className="text-sm font-cherry">{book.title}</h3>
+            <h3 className="text-sm font-cherry">{book.book_title}</h3>
             <p className="text-sm text-gray-500 mb-2">{book.author_name}</p>
             <p className="p-4 text-left text-lg text-gray-700 font-bold ">
               {book.salebook_price} THB
@@ -78,7 +74,7 @@ function AllSectionSale() {
               <Heart />
             </div>
             <Link
-              to={S_DETAIL_ROUTE}
+              to={`/Sdetail/${book.book_id}`}
               className="mt-2 mb-2 px-4 py-1 bg-primary font-cherry text-white rounded-full hover:bg-purple-600 transition"
             >
               Show details

@@ -28,7 +28,9 @@ function EditPost() {
   });
 
   const [postType, setPostType] = useState<"sale" | "rent">("sale"); // "sell" หรือ "rent"
-  const [bookStatus, setbookStatus] = useState<"available" | "rented">("available"); // "sell" หรือ "rent"
+  const [bookStatus, setbookStatus] = useState<"available" | "rented">(
+    "available"
+  ); // "sell" หรือ "rent"
 
   // จำลองการดึงข้อมูลจาก API (สมมติ bookId ใช้ดึงข้อมูลหนังสือ)
   useEffect(() => {
@@ -59,7 +61,7 @@ function EditPost() {
       };
       setBookData(mockData);
       setPostType(mockData.PostType);
-      setPostType(mockData.bookStatus);
+      setbookStatus(mockData.bookStatus);
     };
 
     fetchBookData();
@@ -256,36 +258,29 @@ function EditPost() {
 
           {postType === "rent" && (
             <section className="mb-8">
-              
               <h2 className="ml-10 text-lg font-serif mb-2">Status</h2>
               <div className="flex gap-4 ml-10 mb-5">
-              <label className="flex items-center gap-2">
-                <input
-                  type="radio"
-                  className={`accent-available ${
-                    bookStatus === "available" 
-                  }`}
-                  value="available"
-                  checked={bookStatus === "available"}
-                  onChange={() => setbookStatus("available")}
-                />
-                Available
-              </label>
-              <label className="flex items-center gap-2">
-                <input
-                  type="radio"
-                  className={`accent-rented ${
-                    bookStatus === "rented" 
-                  }`}
-                  value="rented"
-                  checked={bookStatus === "rented"}
-                  onChange={() => setbookStatus("rented")}
-                />
-                Rented
-              </label>
+                <label className="flex items-center gap-2">
+                  <input
+                    type="radio"
+                    className={`accent-available ${bookStatus === "available"}`}
+                    value="available"
+                    checked={bookStatus === "available"}
+                    onChange={() => setbookStatus("available")}
+                  />
+                  Available
+                </label>
+                <label className="flex items-center gap-2">
+                  <input
+                    type="radio"
+                    className={`accent-rented ${bookStatus === "rented"}`}
+                    value="rented"
+                    checked={bookStatus === "rented"}
+                    onChange={() => setbookStatus("rented")}
+                  />
+                  Rented
+                </label>
               </div>
-
-              
 
               <h2 className="ml-10 text-lg font-serif mb-4">Rent Details</h2>
               <div className="grid gap-4 sm:grid-cols-3">
