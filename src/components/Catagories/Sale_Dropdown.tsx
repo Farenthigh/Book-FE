@@ -1,8 +1,8 @@
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { CiSearch } from "react-icons/ci";
 import { useState } from "react";
-import {Link} from "react-router-dom";
-import { S_DETAIL_ROUTE } from "../../context/Route";
+// import {Link} from "react-router-dom";
+// import { S_DETAIL_ROUTE } from "../../context/Route";
 import data from "../Mockdata/Book.json"; 
 function Slidebar({ setSelectedCategory }) {
   const [openCategories, setOpenCategories] = useState([]);
@@ -75,7 +75,7 @@ function Slidebar({ setSelectedCategory }) {
               </div>
 
               {/* Map through books in the category */}
-              {groupedData[category].map((item) => (
+              {/* {groupedData[category].map((item) => (
                 <div
                   key={item.id}
                   className="py-1 pl-8 font-serif text-sm text-gray-700 hover:text-purple-600"
@@ -84,7 +84,7 @@ function Slidebar({ setSelectedCategory }) {
                     {item.title}
                   </Link>
                 </div>
-              ))}
+              ))} */}
             </div>
           )}
         </div>

@@ -263,7 +263,7 @@ function AddPost() {
           )}
 
           {/* ข้อมูลการติดต่อ */}
-          <section className="mb-8">
+          {/* <section className="mb-8">
             <h2 className="text-xl font-serif mb-4">Contact Information</h2>
             <div className="grid gap-4 sm:grid-cols-2">
               <input
@@ -295,7 +295,7 @@ function AddPost() {
                 className="rounded-full p-2 w-full pl-5  border-2 border-primary focus:outline-none"
               />
             </div>
-          </section>
+          </section> */}
 
           {/* ปุ่ม Submit */}
           <div className="text-center">

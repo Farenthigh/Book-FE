@@ -14,6 +14,7 @@ function EditPost() {
     type: "",
     Condition: "",
     price: "",
+    status: "",
     rentPrices: {
       fivedayprice: "",
       sevendayprice: "",
@@ -27,6 +28,7 @@ function EditPost() {
   });
 
   const [postType, setPostType] = useState<"sale" | "rent">("sale"); // "sell" หรือ "rent"
+  const [bookStatus, setbookStatus] = useState<"available" | "rented">("available"); // "sell" หรือ "rent"
 
   // จำลองการดึงข้อมูลจาก API (สมมติ bookId ใช้ดึงข้อมูลหนังสือ)
   useEffect(() => {
@@ -42,6 +44,7 @@ function EditPost() {
         description: response.data.description,
         condition: response.data.Condition,
         price: response.data.price,
+        status: response.data.status,
         rentPrices: {
           fivedayprice: response.data.fivedayprice,
           sevendayprice: response.data.sevendayprice,
@@ -56,6 +59,7 @@ function EditPost() {
       };
       setBookData(mockData);
       setPostType(mockData.PostType);
+      setPostType(mockData.bookStatus);
     };
 
     fetchBookData();
@@ -73,6 +77,7 @@ function EditPost() {
         type: postType,
         Condition: bookData.Condition,
         price: bookData.price,
+        status: bookData.status,
         fivedayprice: bookData.rentPrices.fivedayprice,
         sevendayprice: bookData.rentPrices.sevendayprice,
         fourteendayprice: bookData.rentPrices.fourteendayprice,
@@ -251,7 +256,38 @@ function EditPost() {
 
           {postType === "rent" && (
             <section className="mb-8">
-              <h2 className="ml-5 text-lg font-serif mb-4">Rent Details</h2>
+              
+              <h2 className="ml-10 text-lg font-serif mb-2">Status</h2>
+              <div className="flex gap-4 ml-10 mb-5">
+              <label className="flex items-center gap-2">
+                <input
+                  type="radio"
+                  className={`accent-available ${
+                    bookStatus === "available" 
+                  }`}
+                  value="available"
+                  checked={bookStatus === "available"}
+                  onChange={() => setbookStatus("available")}
+                />
+                Available
+              </label>
+              <label className="flex items-center gap-2">
+                <input
+                  type="radio"
+                  className={`accent-rented ${
+                    bookStatus === "rented" 
+                  }`}
+                  value="rented"
+                  checked={bookStatus === "rented"}
+                  onChange={() => setbookStatus("rented")}
+                />
+                Rented
+              </label>
+              </div>
+
+              
+
+              <h2 className="ml-10 text-lg font-serif mb-4">Rent Details</h2>
               <div className="grid gap-4 sm:grid-cols-3">
                 <input
                   type="number"
@@ -282,7 +318,7 @@ function EditPost() {
           )}
 
           {/* ข้อมูลการติดต่อ */}
-          <section className="mb-8">
+          {/* <section className="mb-8">
             <h2 className="text-xl font-serif mb-4">Contact Information</h2>
             <div className="grid gap-4 sm:grid-cols-2">
               <input
@@ -312,7 +348,7 @@ function EditPost() {
                 className="rounded-full p-2 w-full pl-5  border-2 border-primary focus:outline-none mb-4"
               />
             </div>
-          </section>
+          </section> */}
 
           {/* ปุ่ม Save และ Cancel */}
           <div className="flex justify-between">
