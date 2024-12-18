@@ -123,6 +123,8 @@ function App() {
               <Route path={HOWTORENT_ROUTE} element={<HowtoRent />} />
               <Route path={HOWTORETURN_ROUTE} element={<HowtoReturn />} />
               <Route path={PAYMENTMETHOD_ROUTE} element={<PaymentMethod />} />
+              <Route path={CART_ROUTE} element={<CartPage />}/>
+              <Route path={CHECKOUT_ROUTE} element={<Checkout />}/>
             </Route>
             <Route path={LOGIN_ROUTE} element={<Login></Login>}></Route>
             <Route path={SIGNUP_ROUTE} element={<Signup></Signup>}></Route>
