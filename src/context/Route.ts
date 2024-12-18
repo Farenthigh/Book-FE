@@ -23,5 +23,6 @@ export const HOWTOBUY_ROUTE = "/how-to-buy";
 export const HOWTORENT_ROUTE = "/how-to-rent";
 export const HOWTORETURN_ROUTE = "/how-to-return";
 export const PAYMENTMETHOD_ROUTE = "/payment-method";
+export const CHECKOUT_ROUTE = "/checkout";
 
 export const SIGNUP_ROUTE = "/signup";

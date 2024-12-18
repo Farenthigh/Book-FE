@@ -30,6 +30,7 @@ import {
   HOWTORENT_ROUTE,
   HOWTORETURN_ROUTE,
   PAYMENTMETHOD_ROUTE,
+  CHECKOUT_ROUTE,
 } from "./context/Route";
 import { axiosInstance } from "./helper/axiosInstance";
 import Homepage from "./Pages/Homepage";
@@ -58,6 +59,7 @@ import HowtoBuy from "./components/HomeIcon/HowtoBuy";
 import HowtoRent from "./components/HomeIcon/HowtoRent";
 import HowtoReturn from "./components/HomeIcon/HowtoReturn";
 import PaymentMethod from "./components/HomeIcon/PaymentMethod";
+import Checkout from "./Pages/Checkout";
 
 function App() {
   const [auth, setAuth] = useState<IUserData>(InitAuthValue);
@@ -125,6 +127,7 @@ function App() {
             <Route path={LOGIN_ROUTE} element={<Login></Login>}></Route>
             <Route path={SIGNUP_ROUTE} element={<Signup></Signup>}></Route>
             <Route path={CART_ROUTE} element={<CartPage></CartPage>}></Route>
+            <Route path={CHECKOUT_ROUTE} element={<Checkout></Checkout>}></Route>
             <Route path="*" element={<div>not Found</div>}></Route>
           </Routes>
         </BrowserRouter>
