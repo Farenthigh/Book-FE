@@ -84,7 +84,7 @@ function RentFav() {
                   <FaHeart size={20} color="red" />
                 </div>
                 <Link
-                  to={R_DETAIL_ROUTE}
+                  to={`/Rdetail/${book.book_id}`}
                   className="mt-2 mb-2 px-4 py-1 bg-primary font-cherry text-white rounded-full hover:bg-purple-600 transition"
                 >
                   Show details

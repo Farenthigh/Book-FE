@@ -8,32 +8,32 @@ import { useNavigate } from "react-router-dom";
 const books = [
   {
     id: 1,
-    title: "ปรมาจารย์ลัทธิมาร ฉบับการ์ตูน เล่ม 1",
+    title: "ไขคดีกับโคนันใน 10 นาที เล่ม 2",
     author: "Mo Xiang Tong Xiu",
     category: "Manga",
-    price: 100,
+    price: 20,
     status: "Available",
     images: [
-      "https://mp-static.se-ed.com/physical/cover/wcubtiofyaw78fbnsn95/image/bgzu6g7l",
+      "https://mp-static.se-ed.com/physical/cover/0o5gd8zd1x0bkxscbp5l/image/4i8du89p    ",
     ],
   },
   {
     id: 2,
-    title: "Dragon Ball",
+    title: "windbreker",
     author: "Chun Wang Chi Han",
     category: "Fiction",
-    price: 150,
+    price: 7,
     status: "Rented",
     images: [
-      "https://mp-static.se-ed.com/physical/cover/il81ty93a5dn8hcq8ghx/image/9kh360s8",
+      "https://mp-static.se-ed.com/physical/cover/spxqxbaaa5id8c1t0s82/image/8hr5huyx  ",
     ],
   },
   {
     id: 3,
-    title: "Attack on Titan",
+    title: "ชินจังไดอารี่เพื่อนรัก ไดโนเสาร์ของพวกเรา",
     author: "Mo Xiang Tong Xiu",
     category: "Manga",
-    price: 120,
+    price: 50,
     status: "Available",
     images: [
       "https://mp-static.se-ed.com/physical/cover/runlwoc767e1rmx621bo/image/mdjqs3z3",
@@ -41,35 +41,35 @@ const books = [
   },
   {
     id: 4,
-    title: "Attack on Titan",
+    title: "The greatest version of mine",
     author: "Mo Xiang Tong Xiu",
     category: "Manga",
-    price: 120,
+    price: 35,
     status: "Available",
     images: [
-      "https://mp-static.se-ed.com/physical/cover/runlwoc767e1rmx621bo/image/mdjqs3z3",
+      "https://mp-static.se-ed.com/physical/cover/c9ir20ztj8c2j6a86wtw/image/uu7ygwio   ",
     ],
   },
   {
     id: 5,
-    title: "Attack on Titan",
+    title: "จิตวิทยาสายดาร์ก",
     author: "Mo Xiang Tong Xiu",
     category: "Manga",
-    price: 120,
+    price: 7,
     status: "Rented",
     images: [
-      "https://mp-static.se-ed.com/physical/cover/runlwoc767e1rmx621bo/image/mdjqs3z3",
+      "https://mp-static.se-ed.com/physical/cover/bgjm68zpft1pa373ftz6/image/2yu07nn5  ",
     ],
   },
   {
     id: 6,
-    title: "Attack on Titan",
+    title: "สู้ดิวะ",
     author: "Mo Xiang Tong Xiu",
     category: "Manga",
-    price: 120,
+    price: 7,
     status: "Rented",
     images: [
-      "https://mp-static.se-ed.com/physical/cover/runlwoc767e1rmx621bo/image/mdjqs3z3",
+      "https://mp-static.se-ed.com/physical/cover/i9g2cxedqfxtdhmvdyyn/image/vfhxv375     ",
     ],
   },
 ];
@@ -78,35 +78,35 @@ const Cart = () => {
   const rentalBooks = books.filter((book) => book.status === "Rented");
   const purchaseBooks = books.filter((book) => book.status === "Available");
 
-  const [selectedBooks, setSelectedBooks] = useState<number[]>([]); 
-  const [selectAll, setSelectAll] = useState(false); 
-  const [selectedRentalBooks, setSelectedRentalBooks] = useState<number[]>([]); 
-  const [selectAllRental, setSelectAllRental] = useState(false); 
+  const [selectedBooks, setSelectedBooks] = useState<number[]>([]);
+  const [selectAll, setSelectAll] = useState(false);
+  const [selectedRentalBooks, setSelectedRentalBooks] = useState<number[]>([]);
+  const [selectAllRental, setSelectAllRental] = useState(false);
 
   const toggleSelection = (bookId: number) => {
     setSelectedBooks((prev) =>
       prev.includes(bookId)
-        ? prev.filter((id) => id !== bookId) 
-        : [...prev, bookId] 
+        ? prev.filter((id) => id !== bookId)
+        : [...prev, bookId]
     );
   };
 
   const toggleSelectAll = () => {
     if (selectAll) {
-      setSelectedBooks([]); 
+      setSelectedBooks([]);
     } else {
-      setSelectedBooks(purchaseBooks.map((book) => book.id)); 
+      setSelectedBooks(purchaseBooks.map((book) => book.id));
     }
-    setSelectAll(!selectAll); 
+    setSelectAll(!selectAll);
   };
 
   const toggleSelectAllRental = () => {
     if (selectAllRental) {
-      setSelectedRentalBooks([]); 
+      setSelectedRentalBooks([]);
     } else {
-      setSelectedRentalBooks(rentalBooks.map((book) => book.id)); 
+      setSelectedRentalBooks(rentalBooks.map((book) => book.id));
     }
-    setSelectAllRental(!selectAllRental); 
+    setSelectAllRental(!selectAllRental);
   };
 
   const totalSelectedPrice = purchaseBooks
@@ -124,7 +124,10 @@ const Cart = () => {
   return (
     <div className="bg-[#f9f9ff] text-gray-800 px-24 py-8">
       <header className="flex items-center text-xl font-cherry mb-16 text-left">
-        <button onClick={() => navigate(-1)} className="flex items-center text-gray-700 hover:text-black">
+        <button
+          onClick={() => navigate(-1)}
+          className="flex items-center text-gray-700 hover:text-black"
+        >
           <IoIosArrowBack className="mr-2 text-2xl" />
           <span>Your Cart</span>
         </button>
@@ -133,7 +136,10 @@ const Cart = () => {
         <div className="flex-[2]">
           <section className="mb-10 ">
             <h3 className="text-2xl font-cherry mb-4">
-              Purchase Items <span className="text-purple-500 text-lg">({purchaseBooks.length} items)</span>
+              Purchase Items{" "}
+              <span className="text-purple-500 text-lg">
+                ({purchaseBooks.length} items)
+              </span>
             </h3>
             <div className="h-72 overflow-y-auto border rounded-lg p-2 shadow">
               <div className="mb-4 flex items-center ml-2">
@@ -158,7 +164,10 @@ const Cart = () => {
 
           <section className="mb-8">
             <h3 className="text-2xl font-cherry mb-4 ">
-              Rental Items <span className="text-purple-500 text-lg">({rentalBooks.length} items)</span>
+              Rental Items{" "}
+              <span className="text-purple-500 text-lg">
+                ({rentalBooks.length} items)
+              </span>
             </h3>
             <div className="h-72 overflow-y-auto border rounded-lg p-2 shadow">
               <div className="mb-4 flex items-center ml-2">
@@ -178,8 +187,8 @@ const Cart = () => {
                   toggleSelection={(bookId: number) =>
                     setSelectedRentalBooks((prev) =>
                       prev.includes(bookId)
-                        ? prev.filter((id) => id !== bookId) 
-                        : [...prev, bookId] 
+                        ? prev.filter((id) => id !== bookId)
+                        : [...prev, bookId]
                     )
                   }
                 />

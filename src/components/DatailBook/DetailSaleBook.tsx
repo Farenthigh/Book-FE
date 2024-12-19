@@ -81,6 +81,15 @@ const DetailSaleBook = () => {
   };
   if (isLoading) return <div>Loading...</div>;
 
+  // const handleClick = async () => {
+  //   try {
+  //     const response = await axiosInstance.post("/book/addfavorite", {
+  //       bookId: bookId,
+  //     });
+  //     console.log(response);
+  //   }
+  // }
+
   return (
     <div>
       <div className="flex gap-10 mb-8">

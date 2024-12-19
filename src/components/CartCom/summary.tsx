@@ -1,3 +1,6 @@
+import { Link } from "react-router-dom";
+import { CHECKOUT_ROUTE } from "../../context/Route";
+
 const Summary = ({ total }: { total: number }) => {
   return (
     <aside className="w-full p-4">
@@ -20,9 +23,14 @@ const Summary = ({ total }: { total: number }) => {
           <span>Total</span>
           <span>{total} THB</span>
         </div>
-        <button className="bg-primary hover:bg-purple-600 text-xl text-white w-full py-2 rounded-full font-cherry">
-          Checkout
-        </button>
+        <div className="text-center">
+          <Link
+            to={CHECKOUT_ROUTE}
+            className="bg-primary hover:bg-purple-600 text-xl text-white w-full py-2 rounded-full font-cherry items-center p-5"
+          >
+            Checkout
+          </Link>
+        </div>
       </div>
     </aside>
   );

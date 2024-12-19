@@ -79,10 +79,10 @@ const Post = () => {
                       </p>
                     </div>
                   </div>
-                  <div className="flex space-x-4">
+                  <div className="flex space-x-4 text-center items-center justify-center ">
                     <Link
                       to={`/editPost/${book.book_id}`}
-                      className=" px-4 h-10 bg-primary text-white rounded-full hover:bg-purple-700"
+                      className=" px-4 h-10 bg-primary text-white rounded-full hover:bg-purple-700 text-center mt-2"
                     >
                       Edit Post
                     </Link>
