@@ -7,10 +7,15 @@ import { useParams } from "react-router-dom";
 const DetailSaleBook = () => {
   const { bookId } = useParams();
   const [bookData, setBookData] = useState(Book);
+  const [isLoading, setIsLoading] = useState(true);
+
   const fetchBookData = async () => {
     try {
+      setIsLoading(true);
       const response = await axiosInstance.get(`/book/findbook/${bookId}`);
       console.log(response.data[0]);
+      setIsLoading(false);
+
       if (response.status === 200) {
         setBookData(response.data[0]);
       }
@@ -74,6 +79,7 @@ const DetailSaleBook = () => {
   const goToNextSlide = () => {
     setCurrentModalSlide((prevSlide) => (prevSlide + 1) % images.length);
   };
+  if (isLoading) return <div>Loading...</div>;
 
   return (
     <div>
@@ -84,10 +90,10 @@ const DetailSaleBook = () => {
           onClick={() => openModal(currentSlide)}
         >
           {/* Image Slider */}
-          {/* {images.map((image, index) => (
+          {images.map((image, index) => (
             <img
               key={index}
-              src={image}
+              src={bookData.image[0].image}
               alt={`Slide ${index + 1}`}
               className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ${
                 index === currentSlide ? "opacity-100" : "opacity-0"
@@ -104,7 +110,7 @@ const DetailSaleBook = () => {
                 }`}
               ></span>
             ))}
-          </div> */}
+          </div>
         </div>
 
         <div className="flex-1 pt-10">

@@ -8,10 +8,15 @@ import Book from "../Mockdata/Book.json";
 const DetailRentBook = () => {
   const { bookId } = useParams();
   const [bookData, setBookData] = useState(Book);
+  const [isLoading, setIsLoading] = useState(true);
+
   const fetchBookData = async () => {
     try {
+      setIsLoading(true);
       const response = await axiosInstance.get(`/book/findbook/${bookId}`);
       console.log(response.data[0]);
+      setIsLoading(false);
+
       if (response.status === 200) {
         setBookData(response.data[0]);
       }
@@ -48,7 +53,7 @@ const DetailRentBook = () => {
 
   useEffect(() => {
     fetchBookData();
-  }, [bookId]);
+  }, []);
 
   // Open and close
   const openModal = (index) => {
@@ -80,6 +85,7 @@ const DetailRentBook = () => {
       setPrice(bookData.rentbook_fourteendayprice);
     }
   };
+  if (isLoading) return <div></div>;
 
   return (
     <div>
@@ -92,29 +98,27 @@ const DetailRentBook = () => {
             onClick={() => openModal(currentSlide)}
           >
             {/* Image Slider */}
-            {/* {images.map((image, index) => (
-                <img
-                  key={index}
-                  src={image}
-                  alt={`Slide ${index + 1}`}
-                  className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ${
-                    index === currentSlide ? "opacity-100" : "opacity-0"
-                  }`}
-                />
-              ))} */}
+            {images.map((image, index) => (
+              <img
+                key={index}
+                src={bookData.image[0].image}
+                alt={`Slide ${index + 1}`}
+                className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ${
+                  index === currentSlide ? "opacity-100" : "opacity-0"
+                }`}
+              />
+            ))}
 
-            {/* <div className=" absolute left-2 top-1/2 transform -translate-y-1/2 flex flex-col space-y-2">
-                {images.map((_, index) => (
-                  <span
-                    key={index}
-                    className={`h-3 w-3 rounded-full ${
-                      index === currentSlide
-                        ? "bg-OrangePrimary"
-                        : "bg-gray-400"
-                    }`}
-                  ></span>
-                ))}
-              </div> */}
+            <div className=" absolute left-2 top-1/2 transform -translate-y-1/2 flex flex-col space-y-2">
+              {images.map((_, index) => (
+                <span
+                  key={index}
+                  className={`h-3 w-3 rounded-full ${
+                    index === currentSlide ? "bg-OrangePrimary" : "bg-gray-400"
+                  }`}
+                ></span>
+              ))}
+            </div>
           </div>
           <div className="flex-1 pt-10">
             <h1 className="text-3xl font-cherry mb-2">{bookData.book_title}</h1>

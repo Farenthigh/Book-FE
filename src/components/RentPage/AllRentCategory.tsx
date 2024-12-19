@@ -57,6 +57,7 @@ function AllRentCategory({ selectedCategory }) {
   const endItem = Math.min(currentPage * booksPerPage, filteredBooks.length);
 
   if (!filteredBooks.length) return null;
+  // console.log("rent book ", rentbook[0].image[0].image);
 
   return (
     <div className="flex-grow p-2">
@@ -86,11 +87,11 @@ function AllRentCategory({ selectedCategory }) {
             key={index}
             className="border rounded-lg p-4 text-center relative w-72 shadow-md"
           >
-            {/* <img
-              src={book.images[0]}
-              alt={book.title}
+            <img
+              src={book.image[0].image}
+              alt={book.book_title}
               className="w-full h-48 object-contain rounded-md mb-2"
-            /> */}
+            />
             <h3 className="text-sm font-cherry">{book.book_title}</h3>
             <p className="text-sm text-gray-500 mb-2">{book.author_name}</p>
             <div>HEllo</div>
@@ -102,7 +103,7 @@ function AllRentCategory({ selectedCategory }) {
               {book.rentbook_status}
             </p>
             <div className="absolute top-2 right-2 flex items-center justify-center bg-gray-300 rounded-full w-8 h-8">
-              <Heart />
+              <Heart bookid={book.book_id} />
             </div>
             <Link
               to={`/Rdetail/${book.book_id}`}

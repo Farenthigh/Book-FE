@@ -69,7 +69,7 @@ const Post = () => {
                       {book.book_author_name}
                     </p>
                     <p className="text-gray-900 font-bold text-lg">
-                      {book.salebook ? `${book.salebook.price} THB` : "Rent"}
+                      {book.book_type}
                     </p>
                     <div className="flex mt-2 space-x-72">
                       <p className="text-sm text-gray-400 ">

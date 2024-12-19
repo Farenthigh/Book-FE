@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ALLPOST_ROUTE } from "../context/Route";
 import { axiosInstance } from "../helper/axiosInstance";
+import { uploadImage } from "../helper/supabase";
 
 function EditPost() {
   const { bookId } = useParams();
@@ -11,10 +12,10 @@ function EditPost() {
     publisher: "",
     category: "",
     description: "",
-    type: "",
+    type: "sale",
     Condition: "",
     price: "",
-    status: "",
+    status: "available",
     rentPrices: {
       fivedayprice: "",
       sevendayprice: "",
@@ -33,53 +34,25 @@ function EditPost() {
   ); // "sell" หรือ "rent"
 
   // จำลองการดึงข้อมูลจาก API (สมมติ bookId ใช้ดึงข้อมูลหนังสือ)
-  useEffect(() => {
-    // Fetch data from backend (mock example)
-    const fetchBookData = async () => {
-      const response = await axiosInstance.get(`/book/findbook/${bookId}`);
-      console.log(response);
-      const mockData = {
-        title: response.data.title,
-        author: response.data.author,
-        publisher: response.data.publisher,
-        category: response.data.category,
-        description: response.data.description,
-        condition: response.data.Condition,
-        price: response.data.price,
-        status: response.data.status,
-        rentPrices: {
-          fivedayprice: response.data.fivedayprice,
-          sevendayprice: response.data.sevendayprice,
-          fourteendayprice: response.data.fourteendayprice,
-        },
-        contact: {
-          phoneNumber: response.data.phoneNumber,
-          lineID: response.data.lineID,
-        },
-        type: response.data.type, // หรือ "rent"
-        images: [],
-      };
-      setBookData(mockData);
-      setPostType(mockData.PostType);
-      setbookStatus(mockData.bookStatus);
-    };
-
-    fetchBookData();
-  }, [bookId]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const images = bookData.images.map(async (image) => {
+        return await uploadImage("book", image);
+      });
+      const imageUrls = await Promise.all(images);
       const response = await axiosInstance.put(`/book/updatebook/${bookId}`, {
         title: bookData.title,
         author: bookData.author,
         publisher: bookData.publisher,
         category: bookData.category,
         description: bookData.description,
+        bookimage: imageUrls,
         type: postType,
         Condition: bookData.Condition,
         price: bookData.price,
-        status: bookData.status,
+        status: bookStatus,
         fivedayprice: bookData.rentPrices.fivedayprice,
         sevendayprice: bookData.rentPrices.sevendayprice,
         fourteendayprice: bookData.rentPrices.fourteendayprice,
@@ -117,16 +90,23 @@ function EditPost() {
   const handleImageUpload = (e) => {
     setBookData((prev) => ({
       ...prev,
-      images: Array.from(e.target.files),
+      images: Array.from(e.target.files), // เก็บรูปในรูปแบบ Array
     }));
   };
 
-  const handleSaveChanges = async (e) => {
-    e.preventDefault();
-    console.log("Updated Book Data:", bookData);
-    alert("Post updated successfully!");
-    // ส่งข้อมูลกลับไปยัง backend
-  };
+  //   const handleSaveChanges = async () => {
+  //     // e.preventDefault();
+  //     console.log("Updated Book Data:", bookData);
+  //     alert("Post updated successfully!");
+  //     // ส่งข้อมูลกลับไปยัง backend
+  //   };
+  useEffect(() => {
+    console.log("Book Data:", bookData);
+  }, [bookData]);
+  useEffect(() => {
+    console.log("Post Type:", postType);
+    console.log("Book Status:", bookStatus);
+  }, [postType, bookStatus]);
 
   if (!bookData) return <div>Loading...</div>;
 
@@ -189,9 +169,10 @@ function EditPost() {
 
           {/* แนบรูป */}
           <section className="mb-8">
-            <h2 className="text-xl font-semibold mb-4">Upload Images</h2>
+            <h2 className="text-xl font-serif mb-4">Upload Images</h2>
             <input
               type="file"
+              accept="image/*"
               multiple
               onChange={handleImageUpload}
               className="block w-full text-sm text-gray-500
@@ -225,7 +206,7 @@ function EditPost() {
                   checked={postType === "rent"}
                   onChange={() => setPostType("rent")}
                 />
-                Rent
+                rent
               </label>
             </div>
           </section>
@@ -236,7 +217,7 @@ function EditPost() {
               <h2 className="ml-5 text-lg font-serif mb-4">Sale Details</h2>
               <select
                 name="condition"
-                value={bookData.Condition}
+                value={bookData.condition}
                 onChange={handleChange}
                 className="rounded-full p-2 w-full pl-5  border-2 border-primary focus:outline-none mb-4"
               >
@@ -268,7 +249,7 @@ function EditPost() {
                     checked={bookStatus === "available"}
                     onChange={() => setbookStatus("available")}
                   />
-                  Available
+                  available
                 </label>
                 <label className="flex items-center gap-2">
                   <input
@@ -278,7 +259,7 @@ function EditPost() {
                     checked={bookStatus === "rented"}
                     onChange={() => setbookStatus("rented")}
                   />
-                  Rented
+                  rented
                 </label>
               </div>
 
@@ -302,7 +283,7 @@ function EditPost() {
                 />
                 <input
                   type="number"
-                  name="fourteenday"
+                  name="fourteendayprice"
                   value={bookData.rentPrices.fourteendayprice}
                   onChange={handleRentChange}
                   placeholder="14 Days Price"
@@ -313,17 +294,17 @@ function EditPost() {
           )}
 
           {/* ข้อมูลการติดต่อ */}
-          {/* <section className="mb-8">
+          <section className="mb-8">
             <h2 className="text-xl font-serif mb-4">Contact Information</h2>
             <div className="grid gap-4 sm:grid-cols-2">
               <input
                 type="text"
-                name="phone"
-                value={bookData.contact.phoneNumber}
+                name="phoneNumber"
+                // value={bookData.contact.phoneNumber}
                 onChange={(e) =>
                   setBookData((prev) => ({
                     ...prev,
-                    contact: { ...prev.contact, phone: e.target.value },
+                    contact: { ...prev.contact, phoneNumber: e.target.value },
                   }))
                 }
                 placeholder="Phone Number"
@@ -343,7 +324,7 @@ function EditPost() {
                 className="rounded-full p-2 w-full pl-5  border-2 border-primary focus:outline-none mb-4"
               />
             </div>
-          </section> */}
+          </section>
 
           {/* ปุ่ม Save และ Cancel */}
           <div className="flex justify-between">

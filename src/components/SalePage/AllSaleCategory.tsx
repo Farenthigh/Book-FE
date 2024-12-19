@@ -76,18 +76,18 @@ function AllSaleCategory({ selectedCategory }) {
             key={index}
             className="border rounded-lg p-2 text-center relative w-72 shadow-md"
           >
-            {/* <img
-              src={book.images[0]}
+            <img
+              src={book.image[0].image}
               alt={book.title}
               className="w-full h-48 object-contain rounded-md mb-2"
-            /> */}
+            />
             <h3 className="text-sm font-cherry">{book.book_title}</h3>
             <p className="text-sm text-gray-500 mb-2">{book.author_name}</p>
             <p className="p-4 text-left text-lg text-gray-700 font-bold ">
               {book.salebook_price} THB
             </p>
             <div className="absolute top-2 right-2 flex items-center justify-center bg-gray-300 rounded-full w-8 h-8">
-              <Heart />
+              <Heart bookid={book.book_id} />
             </div>
             <Link
               to={`/Sdetail/${book.book_id}`}

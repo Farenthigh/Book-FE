@@ -1,11 +1,27 @@
-import { useState } from "react";
-import { IoIosArrowForward } from "react-icons/io";
+import { useEffect, useState } from "react";
 import { FaHeart } from "react-icons/fa";
-import {Link} from "react-router-dom";
+import { IoIosArrowForward } from "react-icons/io";
+import { Link } from "react-router-dom";
 import { S_DETAIL_ROUTE } from "../../context/Route";
-import Book from "../Mockdata/Book.json";
+import { axiosInstance } from "../../helper/axiosInstance";
 
 function SaleFav() {
+  const [Book, setBook] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const fetchfavbooks = async () => {
+    try {
+      const response = await axiosInstance.get("/book/getfavorite");
+      if (response.status === 200) {
+        setBook(response.data.saleBook);
+      }
+      console.log(response.data.saleBook);
+
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const itemsPerPage = 4;
   const totalPages = Math.ceil(Book.length / itemsPerPage);
   const [currentPage, setCurrentPage] = useState(0);
@@ -13,7 +29,6 @@ function SaleFav() {
   const startIdx = currentPage * itemsPerPage;
   const endIdx = startIdx + itemsPerPage;
   const visibleBooks = Book.slice(startIdx, endIdx);
-
   const handleNextPage = () => {
     if (currentPage < totalPages - 1) {
       setCurrentPage(currentPage + 1);
@@ -21,6 +36,13 @@ function SaleFav() {
       setCurrentPage(0);
     }
   };
+
+  useEffect(() => {
+    setIsLoading(true);
+    fetchfavbooks();
+  }, []);
+
+  if (isLoading) return <h1>Loading...</h1>;
 
   return (
     <section>
@@ -40,7 +62,7 @@ function SaleFav() {
                 className="border rounded-lg p-4 text-center relative w-72 shadow-md"
               >
                 <img
-                  src={book.images[0]}
+                  src={book.image[0].image}
                   alt={book.title}
                   className=" w-full h-48 object-contain rounded-md mb-2"
                 />
@@ -52,7 +74,10 @@ function SaleFav() {
                 <div className="absolute top-2 right-2 flex items-center justify-center bg-gray-300 rounded-full w-8 h-8">
                   <FaHeart size={20} color="red" />
                 </div>
-                <Link to={ S_DETAIL_ROUTE } className="mt-2 mb-2 px-4 py-1 bg-primary font-cherry text-white rounded-full hover:bg-purple-600 transition">
+                <Link
+                  to={S_DETAIL_ROUTE}
+                  className="mt-2 mb-2 px-4 py-1 bg-primary font-cherry text-white rounded-full hover:bg-purple-600 transition"
+                >
                   Show details
                 </Link>
               </div>

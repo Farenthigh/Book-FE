@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import close from "../assets/close.png";
 import { axiosInstance } from "../helper/axiosInstance";
+import { uploadImage } from "../helper/supabase";
 
 function AddPost() {
   const navigate = useNavigate(); // ใช้สำหรับการนำทางกลับ
@@ -21,20 +22,25 @@ function AddPost() {
       sevendayprice: "",
       fourteendayprice: "",
     },
-    phoneNumber: "",
-    lineID: "",
+    phoneNumber: "", // เบอร์โทรศัพท์
+    lineID: "", // Line ID
     images: [], // เก็บไฟล์รูป
   });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const images = await bookData.images.map(
+        async (image) => await uploadImage("book", image)
+      );
+      const imageUrls = await Promise.all(images);
       const response = await axiosInstance.post("/book/add", {
         title: bookData.title,
         author: bookData.author,
         publisher: bookData.publisher,
         category: bookData.category,
         description: bookData.description,
+        bookimage: imageUrls,
         type: postType,
         Condition: bookData.Condition,
         price: bookData.price,
@@ -164,6 +170,7 @@ function AddPost() {
             <h2 className="text-xl font-serif mb-4">Upload Images</h2>
             <input
               type="file"
+              accept="image/*"
               multiple
               onChange={handleImageUpload}
               className="block w-full text-sm text-gray-500
@@ -263,7 +270,7 @@ function AddPost() {
           )}
 
           {/* ข้อมูลการติดต่อ */}
-          {/* <section className="mb-8">
+          <section className="mb-8">
             <h2 className="text-xl font-serif mb-4">Contact Information</h2>
             <div className="grid gap-4 sm:grid-cols-2">
               <input
@@ -295,7 +302,7 @@ function AddPost() {
                 className="rounded-full p-2 w-full pl-5  border-2 border-primary focus:outline-none"
               />
             </div>
-          </section> */}
+          </section>
 
           {/* ปุ่ม Submit */}
           <div className="text-center">
